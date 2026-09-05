@@ -6,6 +6,7 @@
 <title>J.A.R.V.I.S. // EDITH CORE</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -29,6 +30,7 @@ body{
         #020207;
 }
 
+
 /* ================= LOGIN ================= */
 
 #login{
@@ -37,33 +39,42 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
+
     background:
         radial-gradient(circle at center,
         rgba(120,30,255,.12),
         transparent 40%),
         #020207;
+
     z-index:10;
 }
 
 .login-box{
     width:360px;
     padding:35px;
+
     border:1px solid rgba(180,80,255,.5);
     border-radius:18px;
+
     background:rgba(5,5,15,.8);
+
     box-shadow:
         0 0 30px rgba(130,30,255,.25),
         inset 0 0 30px rgba(255,230,0,.03);
+
     text-align:center;
 }
 
 .login-title{
     font-size:32px;
     letter-spacing:7px;
+
     color:#fff;
+
     text-shadow:
         0 0 10px #fff,
         0 0 25px #9b4dff;
+
     margin-bottom:8px;
 }
 
@@ -78,11 +89,15 @@ input{
     width:100%;
     padding:14px;
     margin:7px 0;
+
     border-radius:8px;
     border:1px solid rgba(150,70,255,.5);
+
     outline:none;
+
     background:rgba(255,255,255,.04);
     color:white;
+
     text-align:center;
 }
 
@@ -95,16 +110,30 @@ button{
     width:100%;
     margin-top:15px;
     padding:14px;
+
     border:none;
     border-radius:8px;
+
     cursor:pointer;
+
     font-weight:bold;
     letter-spacing:3px;
+
     color:#050505;
-    background:linear-gradient(90deg,#dfff00,#b66cff);
+
+    background:
+        linear-gradient(
+            90deg,
+            #dfff00,
+            #b66cff
+        );
+
     box-shadow:
         0 0 15px rgba(200,255,0,.3),
         0 0 30px rgba(160,70,255,.2);
+
+    position:relative;
+    z-index:5;
 }
 
 button:hover{
@@ -117,6 +146,66 @@ button:hover{
     margin-top:12px;
 }
 
+
+/* ================= INITIALIZE NEON WIRES ================= */
+
+.init-line{
+    position:fixed;
+
+    height:1px;
+    width:150px;
+
+    left:50%;
+    top:50%;
+
+    opacity:0;
+
+    pointer-events:none;
+    z-index:20;
+
+    transform-origin:left center;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #9b4dff,
+            #dfff00,
+            #fff,
+            transparent
+        );
+
+    box-shadow:
+        0 0 4px #dfff00,
+        0 0 10px #9b4dff;
+}
+
+.init-line.active{
+    animation:neonWire .75s ease-out forwards;
+}
+
+@keyframes neonWire{
+
+    0%{
+        opacity:0;
+        width:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    70%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+        width:260px;
+    }
+}
+
+
 /* ================= DASHBOARD ================= */
 
 #dashboard{
@@ -126,52 +215,86 @@ button:hover{
     position:relative;
 }
 
-/* background grid */
-
 .grid{
     position:absolute;
     inset:0;
+
     opacity:.13;
+
     background-image:
-        linear-gradient(rgba(150,80,255,.3) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(150,80,255,.3) 1px,transparent 1px);
+        linear-gradient(
+            rgba(150,80,255,.3)
+            1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(150,80,255,.3)
+            1px,
+            transparent 1px
+        );
+
     background-size:60px 60px;
-    transform:perspective(500px) rotateX(60deg) scale(1.6);
+
+    transform:
+        perspective(500px)
+        rotateX(60deg)
+        scale(1.6);
+
     transform-origin:center bottom;
 }
-
-/* stars */
 
 .stars{
     position:absolute;
     inset:0;
+
     background-image:
-        radial-gradient(circle,rgba(255,255,255,.8) 1px,transparent 1px);
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.8)
+            1px,
+            transparent 1px
+        );
+
     background-size:120px 120px;
+
     opacity:.18;
 }
 
-/* top bar */
+
+/* ================= TOP ================= */
 
 .top{
     position:absolute;
+
     top:0;
     left:0;
     right:0;
+
     height:70px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:0 30px;
-    border-bottom:1px solid rgba(150,80,255,.25);
-    background:rgba(0,0,5,.35);
+
+    border-bottom:
+        1px solid
+        rgba(150,80,255,.25);
+
+    background:
+        rgba(0,0,5,.35);
+
     backdrop-filter:blur(10px);
+
     z-index:3;
 }
 
 .logo{
     font-size:22px;
     letter-spacing:7px;
+
     text-shadow:
         0 0 8px #fff,
         0 0 20px #9d4cff;
@@ -180,17 +303,25 @@ button:hover{
 .online{
     font-size:11px;
     letter-spacing:3px;
+
     color:#dfff00;
-    text-shadow:0 0 10px #dfff00;
+
+    text-shadow:
+        0 0 10px #dfff00;
 }
 
-/* core */
+
+/* ================= CORE CONTAINER ================= */
 
 .core-container{
     position:absolute;
+
     left:50%;
     top:50%;
-    transform:translate(-50%,-50%);
+
+    transform:
+        translate(-50%,-50%);
+
     width:min(80vw,700px);
     height:min(80vw,700px);
 }
@@ -198,14 +329,32 @@ button:hover{
 #coreCanvas{
     width:100%;
     height:100%;
+
+    filter:
+        drop-shadow(
+            0 0 18px
+            rgba(150,70,255,.45)
+        )
+        drop-shadow(
+            0 0 35px
+            rgba(220,255,0,.18)
+        );
 }
+
+
+/* ================= STATUS ================= */
 
 .status{
     position:absolute;
+
     left:50%;
     bottom:10%;
-    transform:translateX(-50%);
+
+    transform:
+        translateX(-50%);
+
     text-align:center;
+
     z-index:4;
 }
 
@@ -213,6 +362,7 @@ button:hover{
     font-size:22px;
     letter-spacing:8px;
     font-weight:bold;
+
     text-shadow:
         0 0 8px #fff,
         0 0 20px #b86cff;
@@ -220,28 +370,43 @@ button:hover{
 
 .status-sub{
     margin-top:8px;
+
     font-size:10px;
     letter-spacing:4px;
+
     color:#aaa;
 }
 
-/* bottom */
+
+/* ================= BOTTOM ================= */
 
 .bottom{
     position:absolute;
+
     bottom:0;
     left:0;
     right:0;
+
     height:55px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     padding:0 30px;
-    border-top:1px solid rgba(150,80,255,.2);
-    background:rgba(0,0,5,.35);
+
+    border-top:
+        1px solid
+        rgba(150,80,255,.2);
+
+    background:
+        rgba(0,0,5,.35);
+
     font-size:9px;
     letter-spacing:3px;
+
     color:#777;
+
     z-index:3;
 }
 
@@ -249,46 +414,151 @@ button:hover{
     color:#c9ff00;
 }
 
-/* microphone permission */
-
 .mic-info{
     position:absolute;
+
     top:85px;
     left:50%;
-    transform:translateX(-50%);
+
+    transform:
+        translateX(-50%);
+
     font-size:9px;
     letter-spacing:3px;
+
     color:#777;
+
     z-index:5;
 }
+
+
+/* =====================================================
+   JARVIS WORD
+===================================================== */
+
+.jarvis-word{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    font-size:
+        clamp(42px,8vw,82px);
+
+    font-weight:bold;
+
+    letter-spacing:
+        clamp(7px,1.5vw,16px);
+
+    color:#f7f7ff;
+
+    white-space:nowrap;
+
+    text-align:center;
+
+    opacity:1;
+
+    text-shadow:
+        0 0 5px #fff,
+        0 0 12px #b66cff,
+        0 0 28px #773cff,
+        0 0 55px rgba(60,100,255,.65);
+
+    animation:
+        jarvisFloat 4s ease-in-out infinite;
+
+    transition:
+        opacity .5s ease,
+        transform .5s ease,
+        filter .5s ease;
+
+    z-index:2;
+}
+
+@keyframes jarvisFloat{
+
+    0%,100%{
+        transform:
+            translate(-50%,-50%)
+            translateY(0);
+
+        filter:
+            brightness(1);
+    }
+
+    50%{
+        transform:
+            translate(-50%,-50%)
+            translateY(-5px);
+
+        filter:
+            brightness(1.18);
+    }
+}
+
+.jarvis-word.hidden{
+    opacity:0;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.75);
+
+    filter:
+        blur(10px);
+}
+
+
+/* =====================================================
+   CANVAS
+===================================================== */
+
+canvas{
+    display:block;
+}
+
 </style>
 </head>
 
+
 <body>
 
-<!-- ================= LOGIN ================= -->
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
 <div id="login">
 
     <div class="login-box">
 
-        <div class="login-title">J.A.R.V.I.S.</div>
+        <div class="login-title">
+            J.A.R.V.I.S.
+        </div>
 
         <div class="login-sub">
             EDITH CORE ACCESS
         </div>
 
-        <input id="name"
-               type="text"
-               placeholder="IDENTIFICATION">
+        <input
+            id="name"
+            type="text"
+            placeholder="IDENTIFICATION"
+        >
 
-        <input id="phone"
-               type="text"
-               placeholder="ACCESS ID">
+        <input
+            id="phone"
+            type="text"
+            placeholder="ACCESS ID"
+        >
 
-        <input id="password"
-               type="password"
-               placeholder="PASSWORD">
+        <input
+            id="password"
+            type="password"
+            placeholder="PASSWORD"
+        >
 
         <button onclick="login()">
             INITIALIZE
@@ -301,12 +571,16 @@ button:hover{
 </div>
 
 
-<!-- ================= DASHBOARD ================= -->
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
 
 <div id="dashboard">
 
     <div class="grid"></div>
+
     <div class="stars"></div>
+
 
     <div class="top">
 
@@ -320,27 +594,49 @@ button:hover{
 
     </div>
 
-    <div class="mic-info" id="micInfo">
+
+    <div
+        class="mic-info"
+        id="micInfo"
+    >
         AUDIO CORE INITIALIZING...
     </div>
 
+
     <div class="core-container">
 
+        <!-- JARVIS WORD -->
+        <div
+            class="jarvis-word"
+            id="jarvisWord"
+        >
+            J.A.R.V.I.S.
+        </div>
+
+        <!-- EFFECT CANVAS -->
         <canvas id="coreCanvas"></canvas>
 
     </div>
 
+
     <div class="status">
 
-        <div class="status-main" id="status">
+        <div
+            class="status-main"
+            id="status"
+        >
             ACTIVATED
         </div>
 
-        <div class="status-sub" id="statusSub">
+        <div
+            class="status-sub"
+            id="statusSub"
+        >
             SAY "HEY JARVIS"
         </div>
 
     </div>
+
 
     <div class="bottom">
 
@@ -363,73 +659,164 @@ button:hover{
    LOGIN
 ===================================================== */
 
-const PASSWORD = "jarvisxedith@07";
+const PASSWORD="jarvisxedith@07";
+
 
 function login(){
 
-    const password =
-        document.getElementById("password").value;
+    const password=
+        document.getElementById(
+            "password"
+        ).value;
 
-    const error =
-        document.getElementById("error");
+    const error=
+        document.getElementById(
+            "error"
+        );
 
-    if(password !== PASSWORD){
 
-        error.innerText =
+    if(password!==PASSWORD){
+
+        error.innerText=
             "ACCESS DENIED // INVALID CREDENTIALS";
 
         return;
+
     }
 
-    document.getElementById("login").style.display="none";
 
-    document.getElementById("dashboard").style.display="block";
+    createNeonWires();
 
-    startCore();
 
-    startMicrophone();
+    setTimeout(()=>{
 
-    startJarvisRecognition();
+        document.getElementById(
+            "login"
+        ).style.display="none";
+
+
+        document.getElementById(
+            "dashboard"
+        ).style.display="block";
+
+
+        startCore();
+
+        startMicrophone();
+
+        startJarvisRecognition();
+
+    },650);
+
 }
 
 
 /* =====================================================
-   CORE CANVAS
+   INITIALIZE WIRES
 ===================================================== */
 
-const canvas =
-    document.getElementById("coreCanvas");
+function createNeonWires(){
 
-const ctx =
+    for(let i=0;i<9;i++){
+
+        const line=
+            document.createElement("div");
+
+
+        line.className=
+            "init-line";
+
+
+        const angle=
+            (360/9)*i;
+
+
+        line.style.transform=
+            `rotate(${angle}deg)`;
+
+
+        document.body.appendChild(
+            line
+        );
+
+
+        setTimeout(()=>{
+
+            line.classList.add(
+                "active"
+            );
+
+        },i*25);
+
+
+        setTimeout(()=>{
+
+            line.remove();
+
+        },1000);
+
+    }
+
+}
+
+
+/* =====================================================
+   CANVAS
+===================================================== */
+
+const canvas=
+    document.getElementById(
+        "coreCanvas"
+    );
+
+const ctx=
     canvas.getContext("2d");
+
 
 let W,H;
 
+
 function resize(){
 
-    const rect =
+    const rect=
         canvas.getBoundingClientRect();
 
-    const dpr =
-        window.devicePixelRatio || 1;
 
-    canvas.width =
+    const dpr=
+        Math.min(
+            window.devicePixelRatio||1,
+            2
+        );
+
+
+    canvas.width=
         rect.width*dpr;
 
-    canvas.height =
+
+    canvas.height=
         rect.height*dpr;
 
+
     ctx.setTransform(
-        dpr,0,0,dpr,0,0
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
     );
+
 
     W=rect.width;
     H=rect.height;
+
 }
 
-window.addEventListener("resize",resize);
 
-resize();
+window.addEventListener(
+    "resize",
+    resize
+);
 
 
 /* =====================================================
@@ -440,35 +827,58 @@ let mode="standby";
 
 let rotation=0;
 
-let particles=[];
-
 let micLevel=0;
 
 let speakingLevel=0;
+
+let busy=false;
 
 
 /* =====================================================
    PARTICLES
 ===================================================== */
 
-for(let i=0;i<180;i++){
+const particles=[];
+
+
+for(let i=0;i<330;i++){
 
     particles.push({
 
-        angle:Math.random()*Math.PI*2,
+        angle:
+            Math.random()*
+            Math.PI*2,
 
-        radius:100+Math.random()*190,
+        radius:
+            65+
+            Math.random()*185,
 
         speed:
             .001+
             Math.random()*.004,
 
         size:
-            .5+
-            Math.random()*2,
+            .4+
+            Math.random()*1.8,
 
-        offset:
-            Math.random()*Math.PI*2
+        phase:
+            Math.random()*
+            Math.PI*2,
+
+        depth:
+            Math.random(),
+
+        color:
+            i%17===0
+            ?"red"
+            :
+            i%4===0
+            ?"yellow"
+            :
+            i%3===0
+            ?"purple"
+            :
+            "blue"
 
     });
 
@@ -476,356 +886,212 @@ for(let i=0;i<180;i++){
 
 
 /* =====================================================
-   DRAW CORE
+   DRAW
 ===================================================== */
 
-function drawCore(){
-
-    ctx.clearRect(0,0,W,H);
+function drawOrb(){
 
     const cx=W/2;
     const cy=H/2;
 
-    /*
-       AUDIO REACTION
-    */
 
-    let audioPower=0;
+    /* =================================================
+       STANDBY
+       JARVIS WORD IS VISIBLE
+    ================================================= */
+
+    if(mode==="standby" ||
+       mode==="speaking"){
+
+        return;
+
+    }
+
+
+    /* =================================================
+       LISTENING
+       ELECTRIC BLUE ORB
+    ================================================= */
 
     if(mode==="listening"){
 
-        audioPower=micLevel;
-
-    }else if(mode==="speaking"){
-
-        audioPower=speakingLevel;
-
-    }
-
-    /*
-       CORE SIZE
-    */
-
-    let baseRadius=
-        Math.min(W,H)*.115;
-
-    let pulse=
-        audioPower*45;
-
-    if(mode==="standby"){
-        pulse=
-            Math.sin(Date.now()*.003)*3;
-    }
-
-    if(mode==="thinking"){
-        pulse=
-            Math.sin(Date.now()*.008)*8;
-    }
-
-    const R=
-        baseRadius+pulse;
-
-
-    /* =========================================
-       OUTER GLOW
-    ========================================= */
-
-    let glow=
-        ctx.createRadialGradient(
-            cx,cy,0,
-            cx,cy,R*3
+        drawElectricBlueOrb(
+            cx,
+            cy
         );
 
-    glow.addColorStop(
-        0,
-        "rgba(225,255,0,.45)"
-    );
+        return;
 
-    glow.addColorStop(
-        .25,
-        "rgba(120,80,255,.20)"
-    );
-
-    glow.addColorStop(
-        .55,
-        "rgba(120,20,255,.08)"
-    );
-
-    glow.addColorStop(
-        1,
-        "rgba(0,0,0,0)"
-    );
-
-    ctx.fillStyle=glow;
-
-    ctx.beginPath();
-
-    ctx.arc(
-        cx,
-        cy,
-        R*3,
-        0,
-        Math.PI*2
-    );
-
-    ctx.fill();
+    }
 
 
-    /* =========================================
-       ORBITING PARTICLES
-    ========================================= */
+    /* =================================================
+       THINKING
+       COLOR PARTICLE ENERGY
+    ================================================= */
 
-    particles.forEach((p,i)=>{
+    if(mode==="thinking"){
 
-        let speed=p.speed;
+        drawThinkingParticles(
+            cx,
+            cy
+        );
 
-        if(mode==="thinking")
-            speed*=5;
+        return;
 
-        if(mode==="listening")
-            speed*=2+micLevel*5;
+    }
 
-        if(mode==="speaking")
-            speed*=3;
+}
 
-        p.angle+=speed;
 
-        let rr=
-            p.radius+
-            Math.sin(
-                Date.now()*.001+
-                p.offset
-            )*8;
+/* =====================================================
+   ELECTRIC BLUE ORB
+===================================================== */
 
-        if(mode==="listening")
-            rr+=micLevel*40;
+function drawElectricBlueOrb(cx,cy){
 
-        let x=
-            cx+
-            Math.cos(p.angle)*rr;
+    const reaction=
+        micLevel;
 
-        let y=
-            cy+
-            Math.sin(p.angle)*rr*.48;
 
-        let alpha=
-            .2+
-            Math.random()*.6;
+    const R=
+        Math.min(W,H)*
+        .105*
+        (
+            1+
+            reaction*.35
+        );
+
+
+    /* -----------------------------------------
+       HUGE BLUE AURA
+    ----------------------------------------- */
+
+    for(let i=10;i>0;i--){
+
+        const radius=
+            R+
+            i*11+
+            reaction*25;
+
+
+        const glow=
+            ctx.createRadialGradient(
+                cx,
+                cy,
+                0,
+                cx,
+                cy,
+                radius
+            );
+
+
+        glow.addColorStop(
+            0,
+            `rgba(
+                0,
+                235,
+                255,
+                ${.025*i}
+            )`
+        );
+
+
+        glow.addColorStop(
+            .35,
+            `rgba(
+                0,
+                120,
+                255,
+                ${.018*i}
+            )`
+        );
+
+
+        glow.addColorStop(
+            .65,
+            `rgba(
+                40,
+                60,
+                255,
+                ${.012*i}
+            )`
+        );
+
+
+        glow.addColorStop(
+            1,
+            "rgba(0,0,0,0)"
+        );
+
 
         ctx.beginPath();
 
         ctx.arc(
-            x,
-            y,
-            p.size+
-            micLevel*2,
+            cx,
+            cy,
+            radius,
             0,
             Math.PI*2
         );
 
-        /*
-           yellow / purple / red mixture
-        */
-
-        if(i%17===0){
-
-            ctx.fillStyle=
-                `rgba(255,55,70,${alpha})`;
-
-        }else if(i%3===0){
-
-            ctx.fillStyle=
-                `rgba(170,90,255,${alpha})`;
-
-        }else{
-
-            ctx.fillStyle=
-                `rgba(225,255,0,${alpha})`;
-
-        }
+        ctx.fillStyle=glow;
 
         ctx.fill();
 
-    });
-
-
-    /* =========================================
-       WIRE RINGS
-    ========================================= */
-
-    let ringSpeed=.002;
-
-    if(mode==="thinking")
-        ringSpeed=.012;
-
-    if(mode==="speaking")
-        ringSpeed=.008;
-
-    if(mode==="listening")
-        ringSpeed=.004+micLevel*.02;
-
-    rotation+=ringSpeed;
-
-
-    function ring(
-        radiusX,
-        radiusY,
-        angle,
-        alpha
-    ){
-
-        ctx.save();
-
-        ctx.translate(cx,cy);
-
-        ctx.rotate(angle);
-
-        ctx.beginPath();
-
-        ctx.ellipse(
-            0,
-            0,
-            radiusX,
-            radiusY,
-            0,
-            0,
-            Math.PI*2
-        );
-
-        ctx.strokeStyle=
-            `rgba(170,100,255,${alpha})`;
-
-        ctx.lineWidth=1;
-
-        ctx.shadowBlur=12;
-
-        ctx.shadowColor=
-            "rgba(170,80,255,.8)";
-
-        ctx.stroke();
-
-        ctx.restore();
-
     }
 
 
-    const outer=
-        R*2.25;
+    /* -----------------------------------------
+       BLUE CORE
+    ----------------------------------------- */
 
-    ring(
-        outer,
-        outer*.25,
-        rotation,
-        .55
-    );
-
-    ring(
-        outer,
-        outer*.25,
-        -rotation*1.4,
-        .35
-    );
-
-    ring(
-        outer*.85,
-        outer*.42,
-        rotation*1.5,
-        .4
-    );
-
-    ring(
-        outer*.72,
-        outer*.72,
-        rotation*.7,
-        .28
-    );
-
-
-    /* =========================================
-       CONNECTING RADIAL LINES
-    ========================================= */
-
-    ctx.save();
-
-    ctx.translate(cx,cy);
-
-    ctx.rotate(rotation*.5);
-
-    for(let i=0;i<18;i++){
-
-        const a=
-            i/18*Math.PI*2;
-
-        const x1=
-            Math.cos(a)*R*.9;
-
-        const y1=
-            Math.sin(a)*R*.9;
-
-        const x2=
-            Math.cos(a)*outer;
-
-        const y2=
-            Math.sin(a)*outer;
-
-        ctx.beginPath();
-
-        ctx.moveTo(x1,y1);
-
-        ctx.lineTo(x2,y2);
-
-        ctx.strokeStyle=
-            "rgba(220,255,0,.22)";
-
-        ctx.lineWidth=.6;
-
-        ctx.stroke();
-
-    }
-
-    ctx.restore();
-
-
-    /* =========================================
-       CENTRAL SPHERE
-    ========================================= */
-
-    let sphere=
+    const core=
         ctx.createRadialGradient(
-            cx-R*.3,
-            cy-R*.4,
-            R*.05,
+            cx-R*.2,
+            cy-R*.25,
+            0,
             cx,
             cy,
-            R
+            R*1.15
         );
 
-    sphere.addColorStop(
+
+    core.addColorStop(
         0,
-        "#ffffff"
+        "rgba(255,255,255,1)"
     );
 
-    sphere.addColorStop(
-        .18,
-        "#eeff75"
+    core.addColorStop(
+        .08,
+        "rgba(170,250,255,1)"
     );
 
-    sphere.addColorStop(
-        .42,
-        "#d7ff00"
+    core.addColorStop(
+        .20,
+        "rgba(0,240,255,1)"
     );
 
-    sphere.addColorStop(
-        .68,
-        "#7c35ff"
+    core.addColorStop(
+        .40,
+        "rgba(0,190,255,.98)"
     );
 
-    sphere.addColorStop(
+    core.addColorStop(
+        .62,
+        "rgba(0,100,255,.75)"
+    );
+
+    core.addColorStop(
+        .82,
+        "rgba(20,40,220,.30)"
+    );
+
+    core.addColorStop(
         1,
-        "#130022"
+        "rgba(0,0,0,0)"
     );
 
-    ctx.fillStyle=sphere;
 
     ctx.beginPath();
 
@@ -837,129 +1103,236 @@ function drawCore(){
         Math.PI*2
     );
 
-    ctx.fill();
+    ctx.fillStyle=core;
 
-
-    /* =========================================
-       CORE HIGHLIGHT
-    ========================================= */
-
-    ctx.beginPath();
-
-    ctx.arc(
-        cx-R*.3,
-        cy-R*.35,
-        R*.22,
-        0,
-        Math.PI*2
-    );
-
-    ctx.fillStyle=
-        "rgba(255,255,255,.65)";
-
-    ctx.fill();
-
-
-    /* =========================================
-       RED ENERGY ARC
-    ========================================= */
-
-    ctx.save();
-
-    ctx.translate(cx,cy);
-
-    ctx.rotate(-rotation*2);
-
-    ctx.beginPath();
-
-    ctx.arc(
-        0,
-        0,
-        R*1.35,
-        -.6,
-        .8
-    );
-
-    ctx.strokeStyle=
-        "rgba(255,50,70,.9)";
-
-    ctx.lineWidth=2;
-
-    ctx.shadowBlur=15;
+    ctx.shadowBlur=
+        45+
+        reaction*35;
 
     ctx.shadowColor=
-        "rgba(255,30,60,.8)";
+        "#00dfff";
 
-    ctx.stroke();
+    ctx.fill();
 
-    ctx.restore();
+    ctx.shadowBlur=0;
 
 
-    /* =========================================
-       SMALL INNER RINGS
-    ========================================= */
+    /* -----------------------------------------
+       SUBTLE WAVING CIRCUMFERENCE
+    ----------------------------------------- */
 
-    ctx.save();
+    const points=220;
 
-    ctx.translate(cx,cy);
-
-    ctx.rotate(-rotation*2);
 
     ctx.beginPath();
 
-    ctx.ellipse(
+
+    for(let i=0;i<=points;i++){
+
+        const a=
+            i/points*
+            Math.PI*2;
+
+
+        const wave=
+
+            Math.sin(
+                a*5+
+                performance.now()*.0013
+            )*1.4
+
+            +
+
+            Math.sin(
+                a*9-
+                performance.now()*.0008
+            )*.6;
+
+
+        const r=
+            R+
+            wave+
+            micLevel*5;
+
+
+        const x=
+            cx+
+            Math.cos(a)*r;
+
+
+        const y=
+            cy+
+            Math.sin(a)*r;
+
+
+        if(i===0){
+
+            ctx.moveTo(x,y);
+
+        }else{
+
+            ctx.lineTo(x,y);
+
+        }
+
+    }
+
+
+    ctx.closePath();
+
+
+    const edge=
+        ctx.createLinearGradient(
+            cx-R,
+            cy-R,
+            cx+R,
+            cy+R
+        );
+
+
+    edge.addColorStop(
         0,
-        0,
-        R*1.25,
-        R*.35,
-        0,
-        0,
-        Math.PI*2
+        "#00eaff"
     );
 
-    ctx.strokeStyle=
-        "rgba(225,255,0,.7)";
+    edge.addColorStop(
+        .35,
+        "#008cff"
+    );
 
-    ctx.lineWidth=1;
+    edge.addColorStop(
+        .65,
+        "#00dfff"
+    );
+
+    edge.addColorStop(
+        1,
+        "#7b5cff"
+    );
+
+
+    ctx.strokeStyle=edge;
+
+    ctx.lineWidth=1.8;
+
+    ctx.shadowBlur=16;
+
+    ctx.shadowColor=
+        "#00cfff";
 
     ctx.stroke();
 
-    ctx.restore();
+    ctx.shadowBlur=0;
 
 
-    /* =========================================
-       LISTENING AUDIO RIPPLE
-    ========================================= */
+    /* -----------------------------------------
+       INNER BLUE ENERGY
+    ----------------------------------------- */
 
-    if(mode==="listening"){
+    for(let i=0;i<12;i++){
 
-        for(let i=0;i<3;i++){
+        ctx.beginPath();
 
-            let rr=
-                R+
-                25+
-                i*22+
-                micLevel*70;
 
-            ctx.beginPath();
+        const yOffset=
+            (i-6)*R*.12;
 
-            ctx.arc(
-                cx,
-                cy,
-                rr,
-                0,
-                Math.PI*2
-            );
 
-            ctx.strokeStyle=
-                `rgba(220,255,0,
-                ${.25-i*.06})`;
+        for(let j=0;j<=60;j++){
 
-            ctx.lineWidth=1;
+            const p=j/60;
 
-            ctx.stroke();
+
+            const x=
+                cx-
+                R*.75+
+                p*R*1.5;
+
+
+            const y=
+                cy+
+                yOffset+
+                Math.sin(
+                    p*7+
+                    rotation*3+
+                    i
+                )*
+                (1.5+micLevel*7);
+
+
+            if(j===0)
+                ctx.moveTo(x,y);
+            else
+                ctx.lineTo(x,y);
 
         }
+
+
+        ctx.strokeStyle=
+            `rgba(
+                140,
+                240,
+                255,
+                ${.05+i*.008}
+            )`;
+
+
+        ctx.lineWidth=.7;
+
+        ctx.stroke();
+
+    }
+
+
+    /* -----------------------------------------
+       LISTENING PARTICLES
+    ----------------------------------------- */
+
+    for(let i=0;i<65;i++){
+
+        const p=
+            particles[i];
+
+
+        p.angle+=
+            p.speed*3;
+
+
+        const distance=
+            R+
+            15+
+            ((i*17)%55)+
+            micLevel*45;
+
+
+        const x=
+            cx+
+            Math.cos(p.angle)*
+            distance;
+
+
+        const y=
+            cy+
+            Math.sin(p.angle)*
+            distance*.7;
+
+
+        ctx.beginPath();
+
+        ctx.arc(
+            x,
+            y,
+            p.size,
+            0,
+            Math.PI*2
+        );
+
+
+        ctx.fillStyle=
+            "rgba(0,220,255,.8)";
+
+
+        ctx.fill();
 
     }
 
@@ -967,14 +1340,314 @@ function drawCore(){
 
 
 /* =====================================================
-   ANIMATION LOOP
+   THINKING PARTICLE CLOUD
+===================================================== */
+
+function drawThinkingParticles(cx,cy){
+
+    const time=
+        performance.now()*.001;
+
+
+    const centerGlow=
+        ctx.createRadialGradient(
+            cx,
+            cy,
+            0,
+            cx,
+            cy,
+            170
+        );
+
+
+    centerGlow.addColorStop(
+        0,
+        "rgba(255,80,80,.20)"
+    );
+
+    centerGlow.addColorStop(
+        .25,
+        "rgba(150,40,255,.16)"
+    );
+
+    centerGlow.addColorStop(
+        .55,
+        "rgba(20,100,255,.10)"
+    );
+
+    centerGlow.addColorStop(
+        .75,
+        "rgba(255,230,0,.06)"
+    );
+
+    centerGlow.addColorStop(
+        1,
+        "rgba(0,0,0,0)"
+    );
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+        cx,
+        cy,
+        175,
+        0,
+        Math.PI*2
+    );
+
+    ctx.fillStyle=
+        centerGlow;
+
+    ctx.fill();
+
+
+    /* -----------------------------------------
+       FLOATING PARTICLES
+    ----------------------------------------- */
+
+    particles.forEach((p,i)=>{
+
+        p.angle+=
+            p.speed*7;
+
+
+        let radius=
+            p.radius+
+            Math.sin(
+                time*1.5+
+                p.phase
+            )*15;
+
+
+        radius+=
+            Math.sin(
+                time*2+
+                i
+            )*8;
+
+
+        const x=
+            cx+
+            Math.cos(
+                p.angle
+            )*
+            radius;
+
+
+        const y=
+            cy+
+            Math.sin(
+                p.angle
+            )*
+            radius*.68;
+
+
+        let alpha=
+            .45+
+            Math.sin(
+                time*3+
+                p.phase
+            )*.25;
+
+
+        let color;
+
+
+        if(p.color==="red"){
+
+            color=
+                `rgba(255,40,65,${alpha})`;
+
+        }
+
+        else if(p.color==="yellow"){
+
+            color=
+                `rgba(255,235,0,${alpha})`;
+
+        }
+
+        else if(p.color==="purple"){
+
+            color=
+                `rgba(175,70,255,${alpha})`;
+
+        }
+
+        else{
+
+            color=
+                `rgba(0,190,255,${alpha})`;
+
+        }
+
+
+        ctx.beginPath();
+
+        ctx.arc(
+            x,
+            y,
+            p.size+
+            Math.random()*.7,
+            0,
+            Math.PI*2
+        );
+
+
+        ctx.fillStyle=color;
+
+        ctx.shadowBlur=8;
+
+        ctx.shadowColor=color;
+
+        ctx.fill();
+
+    });
+
+
+    ctx.shadowBlur=0;
+
+
+    /* -----------------------------------------
+       OCCASIONAL ENERGY STREAKS
+    ----------------------------------------- */
+
+    for(let i=0;i<16;i++){
+
+        const a=
+            i*.39+
+            rotation;
+
+
+        const inner=35;
+
+        const outer=
+            90+
+            Math.sin(
+                time*2+i
+            )*40;
+
+
+        const x1=
+            cx+
+            Math.cos(a)*
+            inner;
+
+
+        const y1=
+            cy+
+            Math.sin(a)*
+            inner;
+
+
+        const x2=
+            cx+
+            Math.cos(a+.5)*
+            outer;
+
+
+        const y2=
+            cy+
+            Math.sin(a+.5)*
+            outer;
+
+
+        const gradient=
+            ctx.createLinearGradient(
+                x1,y1,x2,y2
+            );
+
+
+        gradient.addColorStop(
+            0,
+            "rgba(255,255,255,.45)"
+        );
+
+
+        gradient.addColorStop(
+            .3,
+            "rgba(255,230,0,.35)"
+        );
+
+
+        gradient.addColorStop(
+            .55,
+            "rgba(150,60,255,.35)"
+        );
+
+
+        gradient.addColorStop(
+            .8,
+            "rgba(0,170,255,.3)"
+        );
+
+
+        gradient.addColorStop(
+            1,
+            "rgba(255,30,60,0)"
+        );
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(x1,y1);
+
+        ctx.quadraticCurveTo(
+            cx+
+            Math.cos(a+.25)*
+            outer,
+            cy+
+            Math.sin(a+.25)*
+            outer*.7,
+            x2,
+            y2
+        );
+
+
+        ctx.strokeStyle=
+            gradient;
+
+        ctx.lineWidth=1;
+
+        ctx.stroke();
+
+    }
+
+}
+
+
+/* =====================================================
+   CORE LOOP
 ===================================================== */
 
 function animate(){
 
-    drawCore();
+    ctx.clearRect(
+        0,
+        0,
+        W,
+        H
+    );
 
-    requestAnimationFrame(animate);
+
+    if(mode==="thinking"){
+
+        rotation+=.018;
+
+    }else{
+
+        rotation+=.006;
+
+    }
+
+
+    drawOrb();
+
+
+    requestAnimationFrame(
+        animate
+    );
 
 }
 
@@ -985,19 +1658,25 @@ function animate(){
 
 function startCore(){
 
+    resize();
+
     animate();
 
 }
 
 
 /* =====================================================
-   MICROPHONE AUDIO
+   MICROPHONE
 ===================================================== */
 
-let audioContext;
-let analyser;
-let microphone;
-let audioData;
+let audioContext=null;
+
+let analyser=null;
+
+let microphone=null;
+
+let audioData=null;
+
 
 async function startMicrophone(){
 
@@ -1009,40 +1688,58 @@ async function startMicrophone(){
                 audio:true
             });
 
+
+        const AudioContext=
+            window.AudioContext||
+            window.webkitAudioContext;
+
+
         audioContext=
-            new (
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
+            new AudioContext();
+
 
         analyser=
             audioContext.createAnalyser();
 
+
         analyser.fftSize=256;
 
+
         microphone=
-            audioContext.createMediaStreamSource(
+            audioContext
+            .createMediaStreamSource(
                 stream
             );
 
-        microphone.connect(analyser);
+
+        microphone.connect(
+            analyser
+        );
+
 
         audioData=
             new Uint8Array(
                 analyser.frequencyBinCount
             );
 
-        document.getElementById("micInfo")
-        .innerText=
+
+        document.getElementById(
+            "micInfo"
+        ).innerText=
             "AUDIO CORE // ONLINE";
+
 
         updateMic();
 
-    }catch(error){
+    }
 
-        document.getElementById("micInfo")
-        .innerText=
+    catch(error){
+
+        document.getElementById(
+            "micInfo"
+        ).innerText=
             "MICROPHONE ACCESS REQUIRED";
+
 
         console.log(error);
 
@@ -1052,7 +1749,7 @@ async function startMicrophone(){
 
 
 /* =====================================================
-   READ MIC VOLUME
+   MIC LEVEL
 ===================================================== */
 
 function updateMic(){
@@ -1063,54 +1760,83 @@ function updateMic(){
             audioData
         );
 
+
         let total=0;
 
-        for(let i=0;i<audioData.length;i++){
 
-            total+=audioData[i];
+        for(
+            let i=0;
+            i<audioData.length;
+            i++
+        ){
+
+            total+=
+                audioData[i];
 
         }
 
-        let average=
-            total/audioData.length;
 
-        let target=
-            average/255;
+        const target=
+            total/
+            audioData.length/
+            255;
 
-        /*
-           smooth movement
-        */
 
         micLevel=
-            micLevel*.75+
-            target*.25;
+            micLevel*.78+
+            target*.22;
 
     }
 
-    requestAnimationFrame(updateMic);
+
+    requestAnimationFrame(
+        updateMic
+    );
 
 }
 
 
 /* =====================================================
-   JARVIS STATES
+   STATES
 ===================================================== */
 
 function setMode(newMode){
 
     mode=newMode;
 
+
+    const word=
+        document.getElementById(
+            "jarvisWord"
+        );
+
+
     const status=
-        document.getElementById("status");
+        document.getElementById(
+            "status"
+        );
+
 
     const sub=
-        document.getElementById("statusSub");
+        document.getElementById(
+            "statusSub"
+        );
 
+
+    /* -----------------------------------------
+       STANDBY
+    ----------------------------------------- */
 
     if(newMode==="standby"){
 
+        word.classList.remove(
+            "hidden"
+        );
+
+
         status.innerText=
             "ACTIVATED";
+
 
         sub.innerText=
             'SAY "HEY JARVIS"';
@@ -1118,10 +1844,20 @@ function setMode(newMode){
     }
 
 
+    /* -----------------------------------------
+       LISTENING
+    ----------------------------------------- */
+
     if(newMode==="listening"){
+
+        word.classList.add(
+            "hidden"
+        );
+
 
         status.innerText=
             "LISTENING...";
+
 
         sub.innerText=
             "AUDIO INPUT DETECTED";
@@ -1129,10 +1865,20 @@ function setMode(newMode){
     }
 
 
+    /* -----------------------------------------
+       THINKING
+    ----------------------------------------- */
+
     if(newMode==="thinking"){
+
+        word.classList.add(
+            "hidden"
+        );
+
 
         status.innerText=
             "THINKING...";
+
 
         sub.innerText=
             "EDITH CORE PROCESSING";
@@ -1140,10 +1886,25 @@ function setMode(newMode){
     }
 
 
+    /* -----------------------------------------
+       SPEAKING
+    ----------------------------------------- */
+
     if(newMode==="speaking"){
 
+        /*
+           JARVIS WORD RETURNS
+           DURING RESPONSE
+        */
+
+        word.classList.remove(
+            "hidden"
+        );
+
+
         status.innerText=
-            "SPEAKING...";
+            "RESPONDING...";
+
 
         sub.innerText=
             "J.A.R.V.I.S. RESPONSE";
@@ -1154,29 +1915,33 @@ function setMode(newMode){
 
 
 /* =====================================================
-   BROWSER WAKE WORD DEMO
+   WAKE WORD
 ===================================================== */
 
-let recognition;
+let recognition=null;
+
 
 function startJarvisRecognition(){
 
     const SpeechRecognition=
-        window.SpeechRecognition ||
+        window.SpeechRecognition||
         window.webkitSpeechRecognition;
+
 
     if(!SpeechRecognition){
 
         console.log(
-            "Speech recognition unavailable"
+            "Speech recognition unavailable."
         );
 
         return;
 
     }
 
+
     recognition=
         new SpeechRecognition();
+
 
     recognition.continuous=true;
 
@@ -1185,135 +1950,147 @@ function startJarvisRecognition(){
     recognition.lang="en-US";
 
 
-    recognition.onresult=function(event){
+    recognition.onresult=
+        function(event){
 
-        let transcript="";
-
-        for(
-            let i=event.resultIndex;
-            i<event.results.length;
-            i++
-        ){
-
-            transcript+=
-                event.results[i][0].transcript
-                .toLowerCase();
-
-        }
+            let transcript="";
 
 
-        if(
-            transcript.includes("hey jarvis") ||
-            transcript.includes("hey jarvis")
-        ){
+            for(
+                let i=event.resultIndex;
+                i<event.results.length;
+                i++
+            ){
 
-            activateSequence();
+                transcript+=
+                    event.results[i][0]
+                    .transcript
+                    .toLowerCase();
 
-        }
-
-    };
-
-
-    recognition.onerror=function(event){
-
-        console.log(
-            "Recognition error:",
-            event.error
-        );
-
-    };
+            }
 
 
-    recognition.onend=function(){
+            if(
+                transcript.includes(
+                    "hey jarvis"
+                )
+            ){
 
-        try{
+                activateJarvis();
 
-            recognition.start();
+            }
 
-        }catch(e){}
+        };
 
-    };
+
+    recognition.onend=
+        function(){
+
+            try{
+
+                recognition.start();
+
+            }
+
+            catch(e){}
+
+        };
 
 
     try{
 
         recognition.start();
 
-    }catch(e){}
+    }
+
+    catch(e){}
 
 }
 
 
 /* =====================================================
-   DEMO SEQUENCE
+   JARVIS SEQUENCE
 ===================================================== */
 
-let sequenceRunning=false;
+function activateJarvis(){
 
-function activateSequence(){
-
-    if(sequenceRunning)
+    if(busy)
         return;
 
-    sequenceRunning=true;
+
+    busy=true;
 
 
-    /*
-       WAKE
+    /* 
+       WORD → BLUE ORB
     */
 
-    setMode("listening");
+    setMode(
+        "listening"
+    );
 
 
     /*
-       LISTEN FOR A FEW SECONDS
-    */
-
-    setTimeout(()=>{
-
-        setMode("thinking");
-
-    },5000);
-
-
-    /*
-       THINKING
+       LISTENING → THINKING
     */
 
     setTimeout(()=>{
 
-        setMode("speaking");
+        setMode(
+            "thinking"
+        );
+
+    },4000);
+
+
+    /*
+       THINKING → RESPONSE
+       JARVIS WORD RETURNS
+    */
+
+    setTimeout(()=>{
+
+        setMode(
+            "speaking"
+        );
+
 
         fakeSpeaking();
 
-    },8000);
+    },7000);
 
 
     /*
-       RETURN TO STANDBY
+       BACK TO STANDBY
     */
 
     setTimeout(()=>{
 
-        setMode("standby");
+        setMode(
+            "standby"
+        );
 
-        sequenceRunning=false;
 
-    },12500);
+        speakingLevel=0;
+
+        busy=false;
+
+    },11000);
 
 }
 
 
 /* =====================================================
-   FAKE SPEAKING AUDIO REACTION
-   ===================================================== */
+   SPEAKING ANIMATION
+===================================================== */
 
 function fakeSpeaking(){
 
-    let start=
+    const start=
         performance.now();
 
-    function animateSpeaking(){
+
+    function animateVoice(){
 
         if(mode!=="speaking"){
 
@@ -1323,39 +2100,34 @@ function fakeSpeaking(){
 
         }
 
-        let t=
-            (performance.now()-start)/1000;
+
+        const elapsed=
+            (
+                performance.now()-
+                start
+            )/1000;
+
 
         speakingLevel=
-            .35+
+            .25+
             Math.abs(
-                Math.sin(t*7)
-            )*.5+
-            Math.random()*.15;
+                Math.sin(
+                    elapsed*7
+                )
+            )*.6+
+            Math.random()*.12;
+
 
         requestAnimationFrame(
-            animateSpeaking
+            animateVoice
         );
 
     }
 
-    animateSpeaking();
+
+    animateVoice();
 
 }
-
-
-/* =====================================================
-   OPTIONAL TEST CONTROLS
-   =====================================================
-
-   Open browser console and type:
-
-   setMode("listening")
-   setMode("thinking")
-   setMode("speaking")
-   setMode("standby")
-
-===================================================== */
 
 </script>
 
