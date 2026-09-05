@@ -19,7 +19,9 @@ body{
     overflow:hidden;
 }
 
-/* ================= LOGIN ================= */
+/* =========================================================
+   LOGIN PAGE — KEPT AS ORIGINAL
+========================================================= */
 
 #loginPage{
     width:100vw;
@@ -112,179 +114,753 @@ button:hover{
     display:none;
 }
 
-/* ================= DASHBOARD ================= */
+
+/* =========================================================
+   FUTURISTIC DASHBOARD
+========================================================= */
 
 #dashboard{
     display:none;
     width:100vw;
     height:100vh;
     position:relative;
+    overflow:hidden;
     background:
-        radial-gradient(circle at center,rgba(30,0,60,.18),transparent 50%),
+        radial-gradient(
+            circle at 50% 48%,
+            rgba(90,0,255,.12),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 48%,
+            rgba(0,180,255,.07),
+            transparent 48%
+        ),
         #020207;
 }
 
-/* stars */
+
+/* =========================================================
+   BACKGROUND GRID
+========================================================= */
+
+.grid{
+    position:absolute;
+    inset:0;
+    opacity:.16;
+    background-image:
+        linear-gradient(
+            rgba(100,70,255,.15) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,180,255,.12) 1px,
+            transparent 1px
+        );
+    background-size:55px 55px;
+    transform:perspective(500px) rotateX(60deg) scale(1.8);
+    transform-origin:center bottom;
+    bottom:-35%;
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   STARS
+========================================================= */
 
 .star{
     position:absolute;
-    width:1px;
-    height:1px;
-    background:white;
+    width:2px;
+    height:2px;
     border-radius:50%;
+    background:white;
     opacity:.5;
+    box-shadow:0 0 5px white;
 }
 
-/* top bar */
+
+/* =========================================================
+   TOP BAR
+========================================================= */
 
 .topbar{
     position:absolute;
     top:0;
     left:0;
     width:100%;
-    height:70px;
-    border-bottom:1px solid rgba(160,80,255,.15);
+    height:75px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:0 35px;
-    z-index:5;
+
+    border-bottom:
+        1px solid rgba(157,0,255,.25);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5,0,20,.8),
+            rgba(5,5,15,.25),
+            rgba(5,0,20,.8)
+        );
+
+    z-index:10;
 }
 
 .logo{
-    letter-spacing:5px;
+    font-size:17px;
     font-weight:bold;
-    text-shadow:0 0 10px #9d00ff;
-}
+    letter-spacing:6px;
 
-.system{
-    font-size:10px;
-    letter-spacing:3px;
-    color:#65ffbd;
-    text-shadow:0 0 10px #00ff9d;
-}
-
-/* center */
-
-.center{
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    width:100%;
-    height:70%;
-}
-
-canvas{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-}
-
-/* ================= JARVIS WORD ================= */
-
-.jarvis-word{
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    font-size:clamp(42px,7vw,82px);
-    font-weight:bold;
-    letter-spacing:10px;
-    white-space:nowrap;
-    color:#ffffff;
+    color:#fff;
 
     text-shadow:
         0 0 5px #fff,
-        0 0 12px #8b5cff,
-        0 0 25px #6b00ff,
-        0 0 50px #3900ff;
-
-    animation:spaceFloat 4s ease-in-out infinite;
-    transition:
-        opacity .35s ease,
-        transform .35s ease;
+        0 0 15px #a000ff,
+        0 0 30px #6200ff;
 }
 
-.jarvis-word.hidden{
-    opacity:0;
-    transform:translate(-50%,-50%) scale(.75);
+.system{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:9px;
+    letter-spacing:3px;
+
+    color:#d8ff00;
+
+    text-shadow:
+        0 0 8px #d8ff00;
+}
+
+.system-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+
+    background:#d8ff00;
+
+    box-shadow:
+        0 0 7px #d8ff00,
+        0 0 18px #d8ff00;
+
+    animation:blink 1.5s infinite;
+}
+
+@keyframes blink{
+    0%,100%{opacity:1}
+    50%{opacity:.35}
+}
+
+
+/* =========================================================
+   MAIN CORE AREA
+========================================================= */
+
+.core-area{
+    position:absolute;
+
+    left:50%;
+    top:52%;
+
+    transform:translate(-50%,-50%);
+
+    width:min(720px,90vw);
+    height:min(600px,75vh);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+
+/* =========================================================
+   HUD RINGS
+========================================================= */
+
+.hud-ring{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    border-radius:50%;
+
+    transform:
+        translate(-50%,-50%);
+
     pointer-events:none;
 }
 
-@keyframes spaceFloat{
+.ring1{
+    width:340px;
+    height:340px;
+
+    border:
+        1px solid rgba(0,180,255,.28);
+
+    box-shadow:
+        0 0 20px rgba(0,180,255,.12),
+        inset 0 0 20px rgba(0,180,255,.05);
+
+    animation:rotateClockwise 18s linear infinite;
+}
+
+.ring2{
+    width:390px;
+    height:390px;
+
+    border:
+        1px dashed rgba(157,0,255,.35);
+
+    animation:rotateReverse 25s linear infinite;
+}
+
+.ring3{
+    width:450px;
+    height:450px;
+
+    border:
+        1px solid rgba(255,220,0,.12);
+
+    animation:rotateClockwise 35s linear infinite;
+}
+
+.ring4{
+    width:500px;
+    height:500px;
+
+    border:
+        1px dashed rgba(255,40,70,.10);
+
+    animation:rotateReverse 45s linear infinite;
+}
+
+@keyframes rotateClockwise{
+    from{
+        transform:translate(-50%,-50%) rotate(0deg);
+    }
+    to{
+        transform:translate(-50%,-50%) rotate(360deg);
+    }
+}
+
+@keyframes rotateReverse{
+    from{
+        transform:translate(-50%,-50%) rotate(360deg);
+    }
+    to{
+        transform:translate(-50%,-50%) rotate(0deg);
+    }
+}
+
+
+/* =========================================================
+   SMALL HUD MARKERS
+========================================================= */
+
+.marker{
+    position:absolute;
+    left:50%;
+    top:50%;
+
+    width:470px;
+    height:470px;
+
+    transform:translate(-50%,-50%);
+
+    pointer-events:none;
+}
+
+.marker span{
+    position:absolute;
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#00cfff;
+
+    box-shadow:
+        0 0 7px #00cfff,
+        0 0 15px #00cfff;
+}
+
+.marker span:nth-child(1){
+    top:0;
+    left:50%;
+}
+
+.marker span:nth-child(2){
+    bottom:0;
+    left:50%;
+}
+
+.marker span:nth-child(3){
+    left:0;
+    top:50%;
+}
+
+.marker span:nth-child(4){
+    right:0;
+    top:50%;
+}
+
+
+/* =========================================================
+   VIDEO CORE
+========================================================= */
+
+.core-video-wrap{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    width:210px;
+    height:210px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    z-index:5;
+}
+
+
+/* glow behind video */
+
+.core-video-wrap::before{
+    content:"";
+
+    position:absolute;
+
+    width:230px;
+    height:230px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,220,0,.20),
+            rgba(80,0,255,.14),
+            transparent 70%
+        );
+
+    filter:blur(15px);
+
+    animation:coreGlow 2.2s ease-in-out infinite;
+}
+
+@keyframes coreGlow{
     0%,100%{
-        transform:translate(-50%,-50%) translateY(0);
+        transform:scale(.92);
+        opacity:.7;
     }
 
     50%{
-        transform:translate(-50%,-50%) translateY(-7px);
+        transform:scale(1.08);
+        opacity:1;
     }
 }
 
-/* status */
+
+/* actual ball video */
+
+#ballVideo{
+    position:relative;
+
+    width:190px;
+    height:190px;
+
+    object-fit:contain;
+
+    border-radius:50%;
+
+    z-index:3;
+
+    filter:
+        drop-shadow(0 0 8px #00cfff)
+        drop-shadow(0 0 22px rgba(120,0,255,.8));
+
+    mix-blend-mode:screen;
+}
+
+
+/* =========================================================
+   FLOATING JARVIS
+========================================================= */
+
+.jarvis-title{
+    position:absolute;
+
+    left:50%;
+    top:4%;
+
+    transform:
+        translateX(-50%);
+
+    z-index:8;
+
+    font-size:
+        clamp(38px,6vw,76px);
+
+    font-weight:900;
+
+    letter-spacing:
+        clamp(7px,1.5vw,18px);
+
+    white-space:nowrap;
+
+    color:#fff;
+
+    text-shadow:
+        0 0 4px #fff,
+        0 0 10px #fff,
+        0 0 20px #b000ff,
+        0 0 40px #6500ff,
+        0 0 70px #2600ff;
+
+    animation:
+        titleFloat 4s ease-in-out infinite,
+        titlePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes titleFloat{
+    0%,100%{
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+
+    50%{
+        transform:
+            translateX(-50%)
+            translateY(-9px);
+    }
+}
+
+@keyframes titlePulse{
+    0%,100%{
+        opacity:.9;
+    }
+
+    50%{
+        opacity:1;
+    }
+}
+
+
+/* yellow accent underneath */
+
+.title-line{
+    position:absolute;
+
+    left:50%;
+    top:13%;
+
+    transform:translateX(-50%);
+
+    width:180px;
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #d8ff00,
+            #00cfff,
+            #9d00ff,
+            transparent
+        );
+
+    box-shadow:
+        0 0 10px #d8ff00,
+        0 0 20px #9d00ff;
+}
+
+
+/* =========================================================
+   CORE LABEL
+========================================================= */
+
+.core-label{
+    position:absolute;
+
+    left:50%;
+    top:79%;
+
+    transform:translateX(-50%);
+
+    z-index:8;
+
+    text-align:center;
+
+    white-space:nowrap;
+}
+
+.core-main{
+    font-size:12px;
+    letter-spacing:5px;
+
+    color:#d8ff00;
+
+    text-shadow:
+        0 0 8px #d8ff00,
+        0 0 20px rgba(216,255,0,.5);
+}
+
+.core-sub{
+    margin-top:8px;
+
+    font-size:8px;
+    letter-spacing:4px;
+
+    color:#766f9c;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
 
 .status{
     position:absolute;
-    bottom:90px;
+
+    bottom:72px;
     left:50%;
+
     transform:translateX(-50%);
-    font-size:11px;
+
+    z-index:10;
+
+    font-size:10px;
     letter-spacing:5px;
-    color:#b7a6ff;
-    text-shadow:0 0 10px #7c35ff;
+
+    color:#00d9ff;
+
+    text-shadow:
+        0 0 8px #00d9ff,
+        0 0 18px rgba(0,217,255,.5);
+
+    transition:.3s;
 }
 
-.hint{
+
+/* =========================================================
+   SIDE HUD PANELS
+========================================================= */
+
+.panel{
     position:absolute;
-    bottom:65px;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:9px;
-    letter-spacing:3px;
-    color:#55556c;
+
+    width:185px;
+
+    padding:17px;
+
+    border:
+        1px solid rgba(100,80,255,.3);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(15,5,35,.65),
+            rgba(3,8,20,.45)
+        );
+
+    backdrop-filter:blur(8px);
+
+    box-shadow:
+        0 0 20px rgba(80,0,255,.08),
+        inset 0 0 20px rgba(80,0,255,.04);
+
+    z-index:7;
 }
 
-/* bottom */
+.panel-left{
+    left:28px;
+    top:50%;
+
+    transform:
+        translateY(-50%);
+}
+
+.panel-right{
+    right:28px;
+    top:50%;
+
+    transform:
+        translateY(-50%);
+}
+
+.panel-title{
+    font-size:8px;
+    letter-spacing:3px;
+
+    color:#6f6a92;
+
+    margin-bottom:13px;
+}
+
+.panel-row{
+    display:flex;
+    justify-content:space-between;
+
+    padding:7px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.05);
+
+    font-size:8px;
+    letter-spacing:1px;
+}
+
+.panel-row:last-child{
+    border-bottom:none;
+}
+
+.panel-value{
+    color:#d8ff00;
+
+    text-shadow:
+        0 0 6px rgba(216,255,0,.6);
+}
+
+.blue{
+    color:#00cfff;
+
+    text-shadow:
+        0 0 7px rgba(0,207,255,.7);
+}
+
+.purple{
+    color:#b45cff;
+
+    text-shadow:
+        0 0 7px rgba(180,92,255,.7);
+}
+
+
+/* =========================================================
+   BOTTOM HUD
+========================================================= */
 
 .bottom{
     position:absolute;
-    bottom:18px;
+
+    bottom:20px;
     left:0;
+
     width:100%;
+
     display:flex;
     justify-content:space-between;
+
     padding:0 30px;
-    font-size:9px;
+
+    font-size:8px;
     letter-spacing:2px;
+
     color:#4d4d61;
+
+    z-index:10;
 }
 
-/* initialize wires */
+.bottom-center{
+    position:absolute;
+
+    left:50%;
+    transform:translateX(-50%);
+
+    color:#625c82;
+}
+
+
+/* =========================================================
+   SCANLINE
+========================================================= */
+
+.scanline{
+    position:absolute;
+
+    left:0;
+    top:-10%;
+
+    width:100%;
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(0,220,255,.2),
+            rgba(157,0,255,.3),
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px rgba(0,180,255,.4);
+
+    animation:scan 7s linear infinite;
+
+    pointer-events:none;
+    z-index:20;
+}
+
+@keyframes scan{
+    0%{
+        top:-5%;
+    }
+
+    100%{
+        top:105%;
+    }
+}
+
+
+/* =========================================================
+   INITIALIZATION WIRES
+========================================================= */
 
 #initLines{
     position:fixed;
     inset:0;
     pointer-events:none;
-    z-index:20;
+    z-index:50;
 }
 
 .wire{
     position:absolute;
+
     width:1px;
     height:0;
-    background:linear-gradient(
-        to bottom,
-        #fff,
-        #00aaff,
-        #9d00ff,
-        transparent
-    );
+
+    background:
+        linear-gradient(
+            to bottom,
+            #fff,
+            #00aaff,
+            #9d00ff,
+            transparent
+        );
+
     box-shadow:
         0 0 5px #00aaff,
         0 0 12px #9d00ff;
+
     transform-origin:top center;
+
     opacity:0;
 }
 
@@ -303,12 +879,87 @@ canvas{
         opacity:0;
     }
 }
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    .topbar{
+        padding:0 18px;
+    }
+
+    .logo{
+        font-size:12px;
+        letter-spacing:4px;
+    }
+
+    .system{
+        font-size:7px;
+    }
+
+    .panel{
+        display:none;
+    }
+
+    .ring1{
+        width:280px;
+        height:280px;
+    }
+
+    .ring2{
+        width:320px;
+        height:320px;
+    }
+
+    .ring3{
+        width:360px;
+        height:360px;
+    }
+
+    .ring4{
+        width:400px;
+        height:400px;
+    }
+
+    .marker{
+        width:380px;
+        height:380px;
+    }
+
+    .core-video-wrap{
+        width:180px;
+        height:180px;
+    }
+
+    #ballVideo{
+        width:160px;
+        height:160px;
+    }
+
+    .core-label{
+        top:82%;
+    }
+
+    .bottom{
+        padding:0 12px;
+        font-size:6px;
+    }
+
+    .bottom-center{
+        display:none;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<!-- ================= LOGIN ================= -->
+<!-- =========================================================
+     LOGIN
+========================================================= -->
 
 <div id="loginPage">
 
@@ -321,13 +972,28 @@ canvas{
         </div>
 
         <label>IDENTIFICATION</label>
-        <input id="name" type="text" placeholder="Enter identification">
+
+        <input
+            id="name"
+            type="text"
+            placeholder="Enter identification"
+        >
 
         <label>ACCESS ID</label>
-        <input id="phone" type="text" placeholder="Enter access ID">
+
+        <input
+            id="phone"
+            type="text"
+            placeholder="Enter access ID"
+        >
 
         <label>PASSWORD</label>
-        <input id="password" type="password" placeholder="Enter password">
+
+        <input
+            id="password"
+            type="password"
+            placeholder="Enter password"
+        >
 
         <button onclick="initialize()">
             INITIALIZE
@@ -342,11 +1008,20 @@ canvas{
 </div>
 
 
-<!-- ================= DASHBOARD ================= -->
+<!-- =========================================================
+     DASHBOARD
+========================================================= -->
 
 <div id="dashboard">
 
     <div id="stars"></div>
+
+    <div class="grid"></div>
+
+    <div class="scanline"></div>
+
+
+    <!-- TOP -->
 
     <div class="topbar">
 
@@ -355,33 +1030,161 @@ canvas{
         </div>
 
         <div class="system">
+
+            <span class="system-dot"></span>
+
             SYSTEM ONLINE
+
         </div>
 
     </div>
 
-    <div class="center">
 
-        <canvas id="canvas"></canvas>
+    <!-- FLOATING TITLE -->
 
-        <div id="jarvisWord" class="jarvis-word">
-            J.A.R.V.I.S.
+    <div class="jarvis-title">
+        J.A.R.V.I.S.
+    </div>
+
+    <div class="title-line"></div>
+
+
+    <!-- LEFT PANEL -->
+
+    <div class="panel panel-left">
+
+        <div class="panel-title">
+            EDITH CORE
+        </div>
+
+        <div class="panel-row">
+            <span>AI</span>
+            <span class="panel-value">ONLINE</span>
+        </div>
+
+        <div class="panel-row">
+            <span>GEMINI</span>
+            <span class="blue">READY</span>
+        </div>
+
+        <div class="panel-row">
+            <span>VOICE</span>
+            <span class="purple">ACTIVE</span>
+        </div>
+
+        <div class="panel-row">
+            <span>MIC</span>
+            <span class="panel-value">READY</span>
         </div>
 
     </div>
+
+
+    <!-- RIGHT PANEL -->
+
+    <div class="panel panel-right">
+
+        <div class="panel-title">
+            SYSTEM STATUS
+        </div>
+
+        <div class="panel-row">
+            <span>CORE</span>
+            <span class="blue">100%</span>
+        </div>
+
+        <div class="panel-row">
+            <span>NETWORK</span>
+            <span class="panel-value">STABLE</span>
+        </div>
+
+        <div class="panel-row">
+            <span>WAKE</span>
+            <span class="purple">ACTIVE</span>
+        </div>
+
+        <div class="panel-row">
+            <span>PC LINK</span>
+            <span class="panel-value">READY</span>
+        </div>
+
+    </div>
+
+
+    <!-- CENTRAL CORE -->
+
+    <div class="core-area">
+
+        <div class="hud-ring ring4"></div>
+
+        <div class="hud-ring ring3"></div>
+
+        <div class="hud-ring ring2"></div>
+
+        <div class="hud-ring ring1"></div>
+
+        <div class="marker">
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+
+        <!-- YOUR VIDEO -->
+
+        <div class="core-video-wrap">
+
+            <video
+                id="ballVideo"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="auto"
+            >
+                <source src="ball.mp4" type="video/mp4">
+            </video>
+
+        </div>
+
+    </div>
+
+
+    <!-- CORE TEXT -->
+
+    <div class="core-label">
+
+        <div id="coreMain" class="core-main">
+            EDITH CORE // ONLINE
+        </div>
+
+        <div class="core-sub">
+            ARTIFICIAL INTELLIGENCE SYSTEM
+        </div>
+
+    </div>
+
+
+    <!-- STATUS -->
 
     <div id="status" class="status">
-        ACTIVATED
+        READY // SAY "HEY JARVIS"
     </div>
 
-    <div class="hint">
-        SAY "HEY JARVIS"
-    </div>
+
+    <!-- BOTTOM -->
 
     <div class="bottom">
 
         <span>
             EDITH CORE // CONNECTED
+        </span>
+
+        <span class="bottom-center">
+            SECURE NEURAL LINK
         </span>
 
         <span>
@@ -411,32 +1214,36 @@ function initialize(){
 
     if(password !== PASSWORD){
 
-        document.getElementById("error").style.display = "block";
+        document.getElementById("error")
+            .style.display = "block";
 
         return;
     }
 
-    document.getElementById("error").style.display = "none";
+    document.getElementById("error")
+        .style.display = "none";
 
     createStars();
 
-    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("loginPage")
+        .style.display = "none";
 
-    document.getElementById("dashboard").style.display = "block";
-
-    startCanvas();
+    document.getElementById("dashboard")
+        .style.display = "block";
 
     shootLines();
 
     startMicrophone();
 
-    /* give browser time to display dashboard */
-    setTimeout(startWakeRecognition,1000);
+    setTimeout(
+        startWakeRecognition,
+        1000
+    );
 }
 
 
 /* =========================================================
-   SPACE STARS
+   STARS
 ========================================================= */
 
 function createStars(){
@@ -463,7 +1270,7 @@ function createStars(){
             0.15 + Math.random()*0.7;
 
         const size =
-            Math.random()*2;
+            0.5 + Math.random()*2;
 
         star.style.width =
             size + "px";
@@ -477,7 +1284,7 @@ function createStars(){
 
 
 /* =========================================================
-   INITIALIZE WIRES
+   INITIALIZATION WIRES
 ========================================================= */
 
 function shootLines(){
@@ -513,68 +1320,20 @@ function shootLines(){
     });
 
     setTimeout(()=>{
+
         container.innerHTML = "";
+
     },1600);
 }
 
 
 /* =========================================================
-   CANVAS
+   MICROPHONE
 ========================================================= */
-
-const canvas =
-    document.getElementById("canvas");
-
-const ctx =
-    canvas.getContext("2d");
-
-let W = 0;
-let H = 0;
-
-let mode = "standby";
-
-let micLevel = 0;
 
 let analyser = null;
 
 let audioData = null;
-
-let particles = [];
-
-let time = 0;
-
-
-function resizeCanvas(){
-
-    const rect =
-        canvas.getBoundingClientRect();
-
-    W = rect.width;
-    H = rect.height;
-
-    const dpr =
-        window.devicePixelRatio || 1;
-
-    canvas.width =
-        W*dpr;
-
-    canvas.height =
-        H*dpr;
-
-    ctx.setTransform(
-        dpr,0,0,dpr,0,0
-    );
-}
-
-window.addEventListener(
-    "resize",
-    resizeCanvas
-);
-
-
-/* =========================================================
-   MICROPHONE
-========================================================= */
 
 async function startMicrophone(){
 
@@ -586,11 +1345,15 @@ async function startMicrophone(){
             });
 
         const audioContext =
-            new (window.AudioContext ||
-                 window.webkitAudioContext)();
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
 
         const source =
-            audioContext.createMediaStreamSource(stream);
+            audioContext.createMediaStreamSource(
+                stream
+            );
 
         analyser =
             audioContext.createAnalyser();
@@ -616,127 +1379,19 @@ async function startMicrophone(){
 }
 
 
-function updateMic(){
-
-    if(!analyser || !audioData){
-
-        micLevel *= .9;
-
-        return;
-    }
-
-    analyser.getByteTimeDomainData(audioData);
-
-    let sum = 0;
-
-    for(let i=0;i<audioData.length;i++){
-
-        const value =
-            (audioData[i]-128)/128;
-
-        sum += value*value;
-    }
-
-    const rms =
-        Math.sqrt(
-            sum/audioData.length
-        );
-
-    micLevel +=
-        (Math.min(1,rms*5)-micLevel)*.25;
-}
-
-
 /* =========================================================
-   PARTICLES
+   STATUS
 ========================================================= */
 
-function createThinkingParticles(){
+function setStatus(text){
 
-    particles = [];
-
-    for(let i=0;i<330;i++){
-
-        particles.push({
-
-            angle:
-                Math.random()*Math.PI*2,
-
-            radius:
-                50 + Math.random()*210,
-
-            speed:
-                .0008 + Math.random()*.003,
-
-            size:
-                .5 + Math.random()*2,
-
-            offset:
-                Math.random()*Math.PI*2,
-
-            depth:
-                Math.random(),
-
-            color:
-                Math.floor(Math.random()*4)
-
-        });
-    }
+    document.getElementById("status")
+        .textContent = text;
 }
 
 
 /* =========================================================
-   MODE
-========================================================= */
-
-function setMode(newMode){
-
-    mode = newMode;
-
-    const word =
-        document.getElementById("jarvisWord");
-
-    const status =
-        document.getElementById("status");
-
-    if(newMode === "standby"){
-
-        word.classList.remove("hidden");
-
-        status.textContent =
-            "ACTIVATED";
-    }
-
-    else if(newMode === "listening"){
-
-        word.classList.add("hidden");
-
-        status.textContent =
-            "LISTENING...";
-    }
-
-    else if(newMode === "thinking"){
-
-        word.classList.add("hidden");
-
-        status.textContent =
-            "THINKING...";
-
-        createThinkingParticles();
-    }
-
-    else if(newMode === "speaking"){
-
-        word.classList.remove("hidden");
-
-        status.textContent =
-            "RESPONDING...";
-    }
-}
-
-
-/* =========================================================
-   DEMO SEQUENCE
+   JARVIS VISUAL STATES
 ========================================================= */
 
 let sequenceRunning = false;
@@ -748,23 +1403,73 @@ function activateJarvis(){
 
     sequenceRunning = true;
 
-    setMode("listening");
+    const video =
+        document.getElementById("ballVideo");
+
+    const title =
+        document.querySelector(".jarvis-title");
+
+    const core =
+        document.getElementById("coreMain");
+
+
+    /* LISTENING */
+
+    setStatus("LISTENING...");
+
+    core.textContent =
+        "VOICE INPUT // ACTIVE";
+
+    video.style.filter =
+        "drop-shadow(0 0 12px #d8ff00) drop-shadow(0 0 30px rgba(216,255,0,.8))";
+
+    title.style.textShadow =
+        "0 0 5px #fff, 0 0 15px #d8ff00, 0 0 35px #9d00ff";
+
+
+    /* THINKING */
 
     setTimeout(()=>{
 
-        setMode("thinking");
+        setStatus("THINKING...");
+
+        core.textContent =
+            "NEURAL PROCESSING // ACTIVE";
+
+        video.style.filter =
+            "drop-shadow(0 0 12px #9d00ff) drop-shadow(0 0 35px rgba(0,150,255,.9))";
 
     },4000);
 
+
+    /* RESPONDING */
+
     setTimeout(()=>{
 
-        setMode("speaking");
+        setStatus("RESPONDING...");
+
+        core.textContent =
+            "EDITH RESPONSE // ACTIVE";
+
+        video.style.filter =
+            "drop-shadow(0 0 12px #00d9ff) drop-shadow(0 0 35px rgba(0,217,255,.9))";
 
     },7000);
 
+
+    /* RETURN */
+
     setTimeout(()=>{
 
-        setMode("standby");
+        setStatus(
+            'READY // SAY "HEY JARVIS"'
+        );
+
+        core.textContent =
+            "EDITH CORE // ONLINE";
+
+        video.style.filter =
+            "drop-shadow(0 0 8px #00cfff) drop-shadow(0 0 22px rgba(120,0,255,.8))";
 
         sequenceRunning = false;
 
@@ -773,440 +1478,7 @@ function activateJarvis(){
 
 
 /* =========================================================
-   DRAW BLUE ELECTRIC ORB
-========================================================= */
-
-function drawElectricBlueOrb(){
-
-    const cx = W/2;
-    const cy = H/2;
-
-    /*
-       Small orb
-       microphone makes it breathe
-    */
-
-    const baseR = Math.min(W,H)*.075;
-
-    const R =
-        baseR +
-        micLevel*Math.min(W,H)*.035;
-
-    /* outer aura */
-
-    const aura =
-        ctx.createRadialGradient(
-            cx,cy,0,
-            cx,cy,R*3.2
-        );
-
-    aura.addColorStop(
-        0,
-        "rgba(0,180,255,.35)"
-    );
-
-    aura.addColorStop(
-        .3,
-        "rgba(0,100,255,.16)"
-    );
-
-    aura.addColorStop(
-        1,
-        "rgba(0,0,0,0)"
-    );
-
-    ctx.fillStyle = aura;
-
-    ctx.beginPath();
-
-    ctx.arc(
-        cx,cy,R*3.2,0,Math.PI*2
-    );
-
-    ctx.fill();
-
-
-    /* electric blue core */
-
-    const core =
-        ctx.createRadialGradient(
-            cx-R*.25,
-            cy-R*.3,
-            R*.05,
-            cx,cy,R
-        );
-
-    core.addColorStop(
-        0,
-        "#ffffff"
-    );
-
-    core.addColorStop(
-        .12,
-        "#b9f6ff"
-    );
-
-    core.addColorStop(
-        .35,
-        "#00d9ff"
-    );
-
-    core.addColorStop(
-        .7,
-        "#0077ff"
-    );
-
-    core.addColorStop(
-        1,
-        "rgba(0,35,150,.2)"
-    );
-
-    ctx.fillStyle = core;
-
-    ctx.shadowBlur =
-        35 + micLevel*35;
-
-    ctx.shadowColor =
-        "#00aaff";
-
-    ctx.beginPath();
-
-    ctx.arc(
-        cx,
-        cy,
-        R,
-        0,
-        Math.PI*2
-    );
-
-    ctx.fill();
-
-    ctx.shadowBlur = 0;
-
-
-    /* subtle wavy circumference */
-
-    ctx.beginPath();
-
-    const points = 160;
-
-    for(let i=0;i<=points;i++){
-
-        const a =
-            i/points*Math.PI*2;
-
-        const wave =
-            Math.sin(
-                a*8 +
-                time*.025
-            )*.7 +
-
-            Math.sin(
-                a*13 -
-                time*.018
-            )*.35;
-
-        const rr =
-            R*1.08 +
-            wave +
-            micLevel*4;
-
-        const x =
-            cx + Math.cos(a)*rr;
-
-        const y =
-            cy + Math.sin(a)*rr;
-
-        if(i===0)
-            ctx.moveTo(x,y);
-        else
-            ctx.lineTo(x,y);
-    }
-
-    ctx.closePath();
-
-    ctx.strokeStyle =
-        "rgba(0,190,255,.9)";
-
-    ctx.lineWidth = 1;
-
-    ctx.shadowBlur = 10;
-
-    ctx.shadowColor =
-        "#00aaff";
-
-    ctx.stroke();
-
-    ctx.shadowBlur = 0;
-
-
-    /* inner flowing energy */
-
-    for(let j=0;j<5;j++){
-
-        ctx.beginPath();
-
-        for(let i=0;i<=80;i++){
-
-            const p =
-                i/80;
-
-            const a =
-                p*Math.PI*2 +
-                time*.008*(j+1);
-
-            const rr =
-                R*(.45 +
-                .25*Math.sin(
-                    p*7+j+time*.01
-                ));
-
-            const x =
-                cx + Math.cos(a)*rr;
-
-            const y =
-                cy + Math.sin(a)*rr;
-
-            if(i===0)
-                ctx.moveTo(x,y);
-            else
-                ctx.lineTo(x,y);
-        }
-
-        ctx.strokeStyle =
-            `rgba(50,190,255,${.12+j*.03})`;
-
-        ctx.lineWidth =
-            .5;
-
-        ctx.stroke();
-    }
-
-
-    /* tiny blue particles */
-
-    for(let i=0;i<35;i++){
-
-        const a =
-            i*.71 + time*.01;
-
-        const rr =
-            R*(1.2 + (i%5)*.22);
-
-        const x =
-            cx + Math.cos(a)*rr;
-
-        const y =
-            cy + Math.sin(a)*rr;
-
-        const size =
-            1 + micLevel*2;
-
-        ctx.fillStyle =
-            "rgba(0,200,255,.7)";
-
-        ctx.beginPath();
-
-        ctx.arc(
-            x,y,size,0,Math.PI*2
-        );
-
-        ctx.fill();
-    }
-}
-
-
-/* =========================================================
-   THINKING PARTICLES
-========================================================= */
-
-function drawThinkingParticles(){
-
-    const cx = W/2;
-    const cy = H/2;
-
-    /* faint center */
-
-    const centerGlow =
-        ctx.createRadialGradient(
-            cx,cy,0,
-            cx,cy,100
-        );
-
-    centerGlow.addColorStop(
-        0,
-        "rgba(150,70,255,.35)"
-    );
-
-    centerGlow.addColorStop(
-        .4,
-        "rgba(40,100,255,.15)"
-    );
-
-    centerGlow.addColorStop(
-        1,
-        "rgba(0,0,0,0)"
-    );
-
-    ctx.fillStyle =
-        centerGlow;
-
-    ctx.beginPath();
-
-    ctx.arc(
-        cx,cy,100,0,Math.PI*2
-    );
-
-    ctx.fill();
-
-
-    particles.forEach(p=>{
-
-        p.angle += p.speed;
-
-        const breathing =
-            Math.sin(
-                time*.006 +
-                p.offset
-            )*18;
-
-        const r =
-            p.radius +
-            breathing;
-
-        const x =
-            cx +
-            Math.cos(p.angle)*r;
-
-        const y =
-            cy +
-            Math.sin(p.angle)*r*.62;
-
-        let color;
-
-        if(p.color===0)
-            color = `rgba(255,45,75,${.4+p.depth*.5})`;
-
-        if(p.color===1)
-            color = `rgba(255,220,20,${.4+p.depth*.5})`;
-
-        if(p.color===2)
-            color = `rgba(165,60,255,${.4+p.depth*.5})`;
-
-        if(p.color===3)
-            color = `rgba(20,150,255,${.4+p.depth*.5})`;
-
-        ctx.fillStyle = color;
-
-        ctx.shadowBlur = 8;
-
-        ctx.shadowColor = color;
-
-        ctx.beginPath();
-
-        ctx.arc(
-            x,
-            y,
-            p.size,
-            0,
-            Math.PI*2
-        );
-
-        ctx.fill();
-
-        ctx.shadowBlur = 0;
-    });
-
-
-    /* occasional energy streaks */
-
-    for(let i=0;i<7;i++){
-
-        const a =
-            time*.003 +
-            i*.9;
-
-        const r1 =
-            100 + i*15;
-
-        const r2 =
-            r1 + 30 + Math.sin(time*.01+i)*20;
-
-        const x1 =
-            cx + Math.cos(a)*r1;
-
-        const y1 =
-            cy + Math.sin(a)*r1*.6;
-
-        const x2 =
-            cx + Math.cos(a+.08)*r2;
-
-        const y2 =
-            cy + Math.sin(a+.08)*r2*.6;
-
-        ctx.strokeStyle =
-            "rgba(100,150,255,.16)";
-
-        ctx.lineWidth = .7;
-
-        ctx.beginPath();
-
-        ctx.moveTo(x1,y1);
-
-        ctx.lineTo(x2,y2);
-
-        ctx.stroke();
-    }
-}
-
-
-/* =========================================================
-   CANVAS LOOP
-========================================================= */
-
-function startCanvas(){
-
-    resizeCanvas();
-
-    requestAnimationFrame(draw);
-}
-
-
-function draw(){
-
-    time++;
-
-    ctx.clearRect(
-        0,
-        0,
-        W,
-        H
-    );
-
-    updateMic();
-
-    if(
-        mode === "listening"
-    ){
-
-        drawElectricBlueOrb();
-
-    }
-
-    else if(
-        mode === "thinking"
-    ){
-
-        drawThinkingParticles();
-
-    }
-
-    requestAnimationFrame(draw);
-}
-
-
-/* =========================================================
-   IMPROVED WAKE WORD RECOGNITION
+   WAKE WORD RECOGNITION
 ========================================================= */
 
 let recognition = null;
@@ -1217,18 +1489,6 @@ let recognitionRestartTimer = null;
 
 let lastWakeTime = 0;
 
-
-/*
-   Different browsers can return weird transcripts.
-
-   Examples:
-   "hey jarvis"
-   "Hey JARVIS"
-   "hey, Jarvis"
-   "a jarvis"
-   "hey jervis"
-   "hey jarvis."
-*/
 
 function cleanTranscript(text){
 
@@ -1245,47 +1505,12 @@ function containsWakeWord(text){
     const cleaned =
         cleanTranscript(text);
 
-    /*
-       Main exact phrase
-    */
-
-    if(
-        cleaned.includes("hey jarvis")
-    )
-        return true;
-
-
-    /*
-       Common speech-recognition variations
-    */
-
-    if(
-        cleaned.includes("hey jervis")
-    )
-        return true;
-
-
-    if(
-        cleaned.includes("hey jarvis")
-    )
-        return true;
-
-
-    /*
-       Sometimes Chrome hears:
-       "a jarvis"
-       "ay jarvis"
-    */
-
-    if(
+    return (
+        cleaned.includes("hey jarvis") ||
+        cleaned.includes("hey jervis") ||
         cleaned.includes("a jarvis") ||
-        cleaned.includes("ay jarvis") ||
-        cleaned.includes("hey jarvis")
-    )
-        return true;
-
-
-    return false;
+        cleaned.includes("ay jarvis")
+    );
 }
 
 
@@ -1296,30 +1521,24 @@ function handleTranscript(text){
         text
     );
 
+    if(!containsWakeWord(text))
+        return;
+
+    const now =
+        Date.now();
+
     if(
-        containsWakeWord(text)
-    ){
+        now-lastWakeTime < 6000
+    )
+        return;
 
-        const now =
-            Date.now();
+    lastWakeTime = now;
 
-        /*
-           Prevent accidental double activation
-        */
+    console.log(
+        "JARVIS WAKE WORD DETECTED"
+    );
 
-        if(
-            now-lastWakeTime < 6000
-        )
-            return;
-
-        lastWakeTime = now;
-
-        console.log(
-            "JARVIS WAKE WORD DETECTED"
-        );
-
-        activateJarvis();
-    }
+    activateJarvis();
 }
 
 
@@ -1332,34 +1551,24 @@ function createRecognition(){
     if(!SpeechRecognition){
 
         console.log(
-            "Speech Recognition is not supported by this browser."
+            "Speech Recognition not supported."
         );
 
-        document.getElementById("status")
-            .textContent =
-            "USE CHROME";
-        
+        setStatus(
+            "USE CHROME"
+        );
+
         return null;
     }
 
-
     const r =
         new SpeechRecognition();
-
-
-    /*
-       Important settings
-    */
 
     r.continuous = true;
 
     r.interimResults = true;
 
     r.lang = "en-US";
-
-    /*
-       Larger result history
-    */
 
     r.maxAlternatives = 3;
 
@@ -1382,14 +1591,8 @@ function createRecognition(){
             i++
         ){
 
-            let result =
+            const result =
                 event.results[i];
-
-            /*
-               Check interim AND final speech.
-
-               This makes it react faster.
-            */
 
             let text = "";
 
@@ -1424,20 +1627,14 @@ function createRecognition(){
 
         recognitionStarted = false;
 
-
-        /*
-           Don't restart immediately after
-           permission errors.
-        */
-
         if(
             event.error === "not-allowed" ||
             event.error === "service-not-allowed"
         ){
 
-            document.getElementById("status")
-                .textContent =
-                "MIC PERMISSION";
+            setStatus(
+                "MIC PERMISSION"
+            );
 
             return;
         }
@@ -1454,13 +1651,6 @@ function createRecognition(){
 
         recognitionStarted = false;
 
-        /*
-           Chrome often stops continuous
-           recognition by itself.
-
-           Restart automatically.
-        */
-
         scheduleRecognitionRestart();
     };
 
@@ -1473,7 +1663,6 @@ function scheduleRecognitionRestart(){
 
     if(recognitionRestartTimer)
         return;
-
 
     recognitionRestartTimer =
         setTimeout(()=>{
@@ -1497,10 +1686,8 @@ function startWakeRecognition(){
     if(!recognition)
         return;
 
-
     if(recognitionStarted)
         return;
-
 
     try{
 
@@ -1543,13 +1730,8 @@ setInterval(()=>{
 
 
 /* =========================================================
-   EXTRA KEYBOARD TEST
+   KEYBOARD TEST
 ========================================================= */
-
-/*
-   Press J while testing if you want to
-   manually trigger the visual sequence.
-*/
 
 document.addEventListener(
     "keydown",
