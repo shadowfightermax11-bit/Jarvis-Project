@@ -3,293 +3,263 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>J.A.R.V.I.S.</title>
+<title>J.A.R.V.I.S. // EDITH CORE</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html, body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: #02030a;
-    font-family: Consolas, "Courier New", monospace;
-    color: #d8faff;
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#020207;
+    font-family:Arial,Helvetica,sans-serif;
+    color:white;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* BACKGROUND */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
+body{
     background:
-        radial-gradient(circle at 50% 45%, #18204d 0%, transparent 25%),
-        radial-gradient(circle at 20% 80%, #160d35 0%, transparent 25%),
-        radial-gradient(circle at 80% 20%, #32110d 0%, transparent 20%);
-    pointer-events: none;
+        radial-gradient(circle at center,
+        rgba(80,20,150,.12),
+        transparent 35%),
+        #020207;
 }
 
-/* LOGIN */
+/* ================= LOGIN ================= */
 
-.login {
-    position: relative;
-    width: min(90%, 430px);
-    padding: 35px 25px;
-    border: 1px solid #5de7ff;
-    background: rgba(2, 6, 15, .88);
+#login{
+    position:fixed;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+        radial-gradient(circle at center,
+        rgba(120,30,255,.12),
+        transparent 40%),
+        #020207;
+    z-index:10;
+}
+
+.login-box{
+    width:360px;
+    padding:35px;
+    border:1px solid rgba(180,80,255,.5);
+    border-radius:18px;
+    background:rgba(5,5,15,.8);
     box-shadow:
-        0 0 20px #00eaff55,
-        inset 0 0 30px #00eaff0d;
-    text-align: center;
+        0 0 30px rgba(130,30,255,.25),
+        inset 0 0 30px rgba(255,230,0,.03);
+    text-align:center;
 }
 
-.login h1 {
-    margin: 0;
-    font-size: 32px;
-    letter-spacing: 8px;
-    color: #fff;
+.login-title{
+    font-size:32px;
+    letter-spacing:7px;
+    color:#fff;
     text-shadow:
-        0 0 8px #00eaff,
-        0 0 25px #00eaff;
+        0 0 10px #fff,
+        0 0 25px #9b4dff;
+    margin-bottom:8px;
 }
 
-.subtitle {
-    margin: 12px 0 30px;
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: #7beeff;
+.login-sub{
+    font-size:11px;
+    letter-spacing:4px;
+    color:#aaa;
+    margin-bottom:28px;
 }
 
-input {
-    width: 100%;
-    padding: 14px;
-    margin: 7px 0;
-    border: 1px solid #247c91;
-    outline: none;
-    background: #030b13;
-    color: #8df5ff;
-    font-family: inherit;
-    font-size: 14px;
+input{
+    width:100%;
+    padding:14px;
+    margin:7px 0;
+    border-radius:8px;
+    border:1px solid rgba(150,70,255,.5);
+    outline:none;
+    background:rgba(255,255,255,.04);
+    color:white;
+    text-align:center;
 }
 
-input:focus {
-    border-color: #00eaff;
-    box-shadow: 0 0 12px #00eaff44;
+input:focus{
+    border-color:#d3ff00;
+    box-shadow:0 0 15px rgba(220,255,0,.2);
 }
 
-button {
-    width: 100%;
-    padding: 14px;
-    margin-top: 14px;
-    border: 1px solid #00eaff;
-    background: transparent;
-    color: #00eaff;
-    font-family: inherit;
-    letter-spacing: 3px;
-    cursor: pointer;
-    transition: .2s;
-}
-
-button:hover {
-    background: #00eaff;
-    color: #02030a;
-    box-shadow: 0 0 25px #00eaff;
-}
-
-.error {
-    height: 18px;
-    margin-top: 12px;
-    font-size: 11px;
-    color: #ff3948;
-}
-
-/* DASHBOARD */
-
-.dashboard {
-    display: none;
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-/* TOP BAR */
-
-.topbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 65px;
-    padding: 0 25px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #143744;
-    background: rgba(2, 5, 12, .8);
-}
-
-.logo {
-    color: #fff;
-    letter-spacing: 5px;
-    text-shadow: 0 0 12px #00eaff;
-}
-
-.online {
-    font-size: 11px;
-    color: #65ff9b;
-    text-shadow: 0 0 10px #65ff9b;
-}
-
-.online::before {
-    content: "● ";
-}
-
-/* CENTER */
-
-.core {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.orb {
-    position: relative;
-    width: 145px;
-    height: 145px;
-    margin: auto;
-    border-radius: 50%;
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #fff,
-            #fff700 8%,
-            #aaff00 22%,
-            #682cff 48%,
-            #16114b 70%,
-            transparent 72%
-        );
-
+button{
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    letter-spacing:3px;
+    color:#050505;
+    background:linear-gradient(90deg,#dfff00,#b66cff);
     box-shadow:
-        0 0 15px #fff700,
-        0 0 35px #aaff00,
-        0 0 65px #673cff,
-        0 0 110px #4920ff;
-
-    animation: orbPulse 2.2s infinite ease-in-out;
+        0 0 15px rgba(200,255,0,.3),
+        0 0 30px rgba(160,70,255,.2);
 }
 
-.orb::before {
-    content: "";
-    position: absolute;
-    inset: -22px;
-    border-radius: 50%;
-    border: 1px solid #b7ff00aa;
-    box-shadow:
-        0 0 15px #b7ff00,
-        0 0 30px #672cff;
-    animation: spin 7s linear infinite;
+button:hover{
+    transform:scale(1.02);
 }
 
-.orb::after {
-    content: "";
-    position: absolute;
-    inset: -40px;
-    border-radius: 50%;
-    border: 1px solid #ff304888;
-    border-left-color: transparent;
-    border-bottom-color: transparent;
-    animation: spinReverse 5s linear infinite;
+#error{
+    color:#ff3b5c;
+    font-size:12px;
+    margin-top:12px;
 }
 
-@keyframes orbPulse {
-    0%, 100% {
-        transform: scale(.94);
-        filter: brightness(.9);
-    }
+/* ================= DASHBOARD ================= */
 
-    50% {
-        transform: scale(1.05);
-        filter: brightness(1.3);
-    }
+#dashboard{
+    display:none;
+    width:100%;
+    height:100%;
+    position:relative;
 }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+/* background grid */
+
+.grid{
+    position:absolute;
+    inset:0;
+    opacity:.13;
+    background-image:
+        linear-gradient(rgba(150,80,255,.3) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(150,80,255,.3) 1px,transparent 1px);
+    background-size:60px 60px;
+    transform:perspective(500px) rotateX(60deg) scale(1.6);
+    transform-origin:center bottom;
 }
 
-@keyframes spinReverse {
-    to {
-        transform: rotate(-360deg);
-    }
+/* stars */
+
+.stars{
+    position:absolute;
+    inset:0;
+    background-image:
+        radial-gradient(circle,rgba(255,255,255,.8) 1px,transparent 1px);
+    background-size:120px 120px;
+    opacity:.18;
 }
 
-.status {
-    margin-top: 55px;
-    font-size: 13px;
-    letter-spacing: 4px;
-    color: #78f5ff;
-    text-shadow: 0 0 12px #00eaff;
+/* top bar */
+
+.top{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    border-bottom:1px solid rgba(150,80,255,.25);
+    background:rgba(0,0,5,.35);
+    backdrop-filter:blur(10px);
+    z-index:3;
 }
 
-.status.listening {
-    color: #fff700;
-    text-shadow: 0 0 15px #fff700;
-    animation: listening 1s infinite;
+.logo{
+    font-size:22px;
+    letter-spacing:7px;
+    text-shadow:
+        0 0 8px #fff,
+        0 0 20px #9d4cff;
 }
 
-@keyframes listening {
-    50% {
-        opacity: .35;
-    }
+.online{
+    font-size:11px;
+    letter-spacing:3px;
+    color:#dfff00;
+    text-shadow:0 0 10px #dfff00;
 }
 
-.hint {
-    margin-top: 14px;
-    font-size: 10px;
-    color: #718b96;
-    letter-spacing: 2px;
+/* core */
+
+.core-container{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:min(80vw,700px);
+    height:min(80vw,700px);
 }
 
-/* BOTTOM */
-
-.bottom {
-    position: absolute;
-    bottom: 25px;
-    left: 25px;
-    right: 25px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 10px;
-    color: #4c6974;
+#coreCanvas{
+    width:100%;
+    height:100%;
 }
 
-@media(max-width:500px) {
-    .orb {
-        width: 115px;
-        height: 115px;
-    }
+.status{
+    position:absolute;
+    left:50%;
+    bottom:10%;
+    transform:translateX(-50%);
+    text-align:center;
+    z-index:4;
+}
 
-    .logo {
-        font-size: 13px;
-    }
+.status-main{
+    font-size:22px;
+    letter-spacing:8px;
+    font-weight:bold;
+    text-shadow:
+        0 0 8px #fff,
+        0 0 20px #b86cff;
+}
 
-    .status {
-        font-size: 10px;
-    }
+.status-sub{
+    margin-top:8px;
+    font-size:10px;
+    letter-spacing:4px;
+    color:#aaa;
+}
+
+/* bottom */
+
+.bottom{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:55px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 30px;
+    border-top:1px solid rgba(150,80,255,.2);
+    background:rgba(0,0,5,.35);
+    font-size:9px;
+    letter-spacing:3px;
+    color:#777;
+    z-index:3;
+}
+
+.core-connected{
+    color:#c9ff00;
+}
+
+/* microphone permission */
+
+.mic-info{
+    position:absolute;
+    top:85px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:9px;
+    letter-spacing:3px;
+    color:#777;
+    z-index:5;
 }
 </style>
 </head>
@@ -298,86 +268,89 @@ button:hover {
 
 <!-- ================= LOGIN ================= -->
 
-<div class="login" id="login">
+<div id="login">
 
-    <h1>J.A.R.V.I.S.</h1>
+    <div class="login-box">
 
-    <div class="subtitle">
-        PERSONAL AI ASSISTANT SYSTEM<br>
-        SECURE INITIALIZATION
+        <div class="login-title">J.A.R.V.I.S.</div>
+
+        <div class="login-sub">
+            EDITH CORE ACCESS
+        </div>
+
+        <input id="name"
+               type="text"
+               placeholder="IDENTIFICATION">
+
+        <input id="phone"
+               type="text"
+               placeholder="ACCESS ID">
+
+        <input id="password"
+               type="password"
+               placeholder="PASSWORD">
+
+        <button onclick="login()">
+            INITIALIZE
+        </button>
+
+        <div id="error"></div>
+
     </div>
-
-    <input
-        id="name"
-        type="text"
-        placeholder="ENTER YOUR NAME"
-        autocomplete="off"
-    >
-
-    <input
-        id="phone"
-        type="tel"
-        placeholder="ENTER PHONE NUMBER"
-        autocomplete="off"
-    >
-
-    <input
-        id="password"
-        type="password"
-        placeholder="ENTER ACCESS PASSWORD"
-        autocomplete="off"
-    >
-
-    <button onclick="login()">
-        INITIALIZE SYSTEM
-    </button>
-
-    <div class="error" id="error"></div>
 
 </div>
 
 
 <!-- ================= DASHBOARD ================= -->
 
-<div class="dashboard" id="dashboard">
+<div id="dashboard">
 
-    <div class="topbar">
+    <div class="grid"></div>
+    <div class="stars"></div>
+
+    <div class="top">
 
         <div class="logo">
             J.A.R.V.I.S.
         </div>
 
         <div class="online">
-            SYSTEM ONLINE
+            ● SYSTEM ONLINE
         </div>
 
     </div>
 
+    <div class="mic-info" id="micInfo">
+        AUDIO CORE INITIALIZING...
+    </div>
 
-    <div class="core">
+    <div class="core-container">
 
-        <div class="orb" id="orb"></div>
+        <canvas id="coreCanvas"></canvas>
 
-        <div class="status" id="status">
+    </div>
+
+    <div class="status">
+
+        <div class="status-main" id="status">
             ACTIVATED
         </div>
 
-        <div class="hint">
-            SAY &nbsp; "HEY JARVIS"
+        <div class="status-sub" id="statusSub">
+            SAY "HEY JARVIS"
         </div>
 
     </div>
 
-
     <div class="bottom">
 
-        <span>
+        <div class="core-connected">
             EDITH CORE // CONNECTED
-        </span>
+        </div>
 
-        <span>
+        <div>
             AI // READY
-        </span>
+        </div>
 
     </div>
 
@@ -386,16 +359,13 @@ button:hover {
 
 <script>
 
+/* =====================================================
+   LOGIN
+===================================================== */
+
 const PASSWORD = "jarvisxedith@07";
 
-
-function login() {
-
-    const name =
-        document.getElementById("name").value.trim();
-
-    const phone =
-        document.getElementById("phone").value.trim();
+function login(){
 
     const password =
         document.getElementById("password").value;
@@ -403,176 +373,989 @@ function login() {
     const error =
         document.getElementById("error");
 
-
-    if (!name) {
+    if(password !== PASSWORD){
 
         error.innerText =
-            "IDENTITY REQUIRED";
+            "ACCESS DENIED // INVALID CREDENTIALS";
 
         return;
     }
 
+    document.getElementById("login").style.display="none";
 
-    if (!phone) {
+    document.getElementById("dashboard").style.display="block";
 
-        error.innerText =
-            "PHONE NUMBER REQUIRED";
+    startCore();
 
-        return;
-    }
+    startMicrophone();
 
-
-    if (password !== PASSWORD) {
-
-        error.innerText =
-            "ACCESS DENIED — INVALID PASSWORD";
-
-        return;
-    }
-
-
-    error.innerText = "";
-
-
-    const loginBox =
-        document.getElementById("login");
-
-    loginBox.style.boxShadow =
-        "0 0 50px #65ff9b";
-
-
-    setTimeout(() => {
-
-        loginBox.style.display =
-            "none";
-
-        document.getElementById("dashboard")
-            .style.display = "block";
-
-
-        // Future EDITH connection goes here.
-
-        startJarvisInterface();
-
-    }, 700);
-
+    startJarvisRecognition();
 }
 
 
-/* ================= JARVIS INTERFACE ================= */
+/* =====================================================
+   CORE CANVAS
+===================================================== */
 
-function startJarvisInterface() {
+const canvas =
+    document.getElementById("coreCanvas");
 
-    const status =
-        document.getElementById("status");
+const ctx =
+    canvas.getContext("2d");
 
-    status.innerText =
-        "ACTIVATED";
+let W,H;
 
-    status.classList.remove(
-        "listening"
+function resize(){
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+    const dpr =
+        window.devicePixelRatio || 1;
+
+    canvas.width =
+        rect.width*dpr;
+
+    canvas.height =
+        rect.height*dpr;
+
+    ctx.setTransform(
+        dpr,0,0,dpr,0,0
     );
 
+    W=rect.width;
+    H=rect.height;
+}
+
+window.addEventListener("resize",resize);
+
+resize();
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let mode="standby";
+
+let rotation=0;
+
+let particles=[];
+
+let micLevel=0;
+
+let speakingLevel=0;
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+for(let i=0;i<180;i++){
+
+    particles.push({
+
+        angle:Math.random()*Math.PI*2,
+
+        radius:100+Math.random()*190,
+
+        speed:
+            .001+
+            Math.random()*.004,
+
+        size:
+            .5+
+            Math.random()*2,
+
+        offset:
+            Math.random()*Math.PI*2
+
+    });
+
 }
 
 
-/*
-   TEMPORARY BROWSER WAKE-WORD DEMO
+/* =====================================================
+   DRAW CORE
+===================================================== */
 
-   This does NOT replace your Python
-   EDITH wake-word system yet.
+function drawCore(){
 
-   The real Python connection will be
-   added in the next step.
-*/
+    ctx.clearRect(0,0,W,H);
 
-let recognition = null;
+    const cx=W/2;
+    const cy=H/2;
+
+    /*
+       AUDIO REACTION
+    */
+
+    let audioPower=0;
+
+    if(mode==="listening"){
+
+        audioPower=micLevel;
+
+    }else if(mode==="speaking"){
+
+        audioPower=speakingLevel;
+
+    }
+
+    /*
+       CORE SIZE
+    */
+
+    let baseRadius=
+        Math.min(W,H)*.115;
+
+    let pulse=
+        audioPower*45;
+
+    if(mode==="standby"){
+        pulse=
+            Math.sin(Date.now()*.003)*3;
+    }
+
+    if(mode==="thinking"){
+        pulse=
+            Math.sin(Date.now()*.008)*8;
+    }
+
+    const R=
+        baseRadius+pulse;
 
 
-if (
-    "webkitSpeechRecognition" in window ||
-    "SpeechRecognition" in window
-) {
+    /* =========================================
+       OUTER GLOW
+    ========================================= */
 
-    const SpeechRecognition =
+    let glow=
+        ctx.createRadialGradient(
+            cx,cy,0,
+            cx,cy,R*3
+        );
+
+    glow.addColorStop(
+        0,
+        "rgba(225,255,0,.45)"
+    );
+
+    glow.addColorStop(
+        .25,
+        "rgba(120,80,255,.20)"
+    );
+
+    glow.addColorStop(
+        .55,
+        "rgba(120,20,255,.08)"
+    );
+
+    glow.addColorStop(
+        1,
+        "rgba(0,0,0,0)"
+    );
+
+    ctx.fillStyle=glow;
+
+    ctx.beginPath();
+
+    ctx.arc(
+        cx,
+        cy,
+        R*3,
+        0,
+        Math.PI*2
+    );
+
+    ctx.fill();
+
+
+    /* =========================================
+       ORBITING PARTICLES
+    ========================================= */
+
+    particles.forEach((p,i)=>{
+
+        let speed=p.speed;
+
+        if(mode==="thinking")
+            speed*=5;
+
+        if(mode==="listening")
+            speed*=2+micLevel*5;
+
+        if(mode==="speaking")
+            speed*=3;
+
+        p.angle+=speed;
+
+        let rr=
+            p.radius+
+            Math.sin(
+                Date.now()*.001+
+                p.offset
+            )*8;
+
+        if(mode==="listening")
+            rr+=micLevel*40;
+
+        let x=
+            cx+
+            Math.cos(p.angle)*rr;
+
+        let y=
+            cy+
+            Math.sin(p.angle)*rr*.48;
+
+        let alpha=
+            .2+
+            Math.random()*.6;
+
+        ctx.beginPath();
+
+        ctx.arc(
+            x,
+            y,
+            p.size+
+            micLevel*2,
+            0,
+            Math.PI*2
+        );
+
+        /*
+           yellow / purple / red mixture
+        */
+
+        if(i%17===0){
+
+            ctx.fillStyle=
+                `rgba(255,55,70,${alpha})`;
+
+        }else if(i%3===0){
+
+            ctx.fillStyle=
+                `rgba(170,90,255,${alpha})`;
+
+        }else{
+
+            ctx.fillStyle=
+                `rgba(225,255,0,${alpha})`;
+
+        }
+
+        ctx.fill();
+
+    });
+
+
+    /* =========================================
+       WIRE RINGS
+    ========================================= */
+
+    let ringSpeed=.002;
+
+    if(mode==="thinking")
+        ringSpeed=.012;
+
+    if(mode==="speaking")
+        ringSpeed=.008;
+
+    if(mode==="listening")
+        ringSpeed=.004+micLevel*.02;
+
+    rotation+=ringSpeed;
+
+
+    function ring(
+        radiusX,
+        radiusY,
+        angle,
+        alpha
+    ){
+
+        ctx.save();
+
+        ctx.translate(cx,cy);
+
+        ctx.rotate(angle);
+
+        ctx.beginPath();
+
+        ctx.ellipse(
+            0,
+            0,
+            radiusX,
+            radiusY,
+            0,
+            0,
+            Math.PI*2
+        );
+
+        ctx.strokeStyle=
+            `rgba(170,100,255,${alpha})`;
+
+        ctx.lineWidth=1;
+
+        ctx.shadowBlur=12;
+
+        ctx.shadowColor=
+            "rgba(170,80,255,.8)";
+
+        ctx.stroke();
+
+        ctx.restore();
+
+    }
+
+
+    const outer=
+        R*2.25;
+
+    ring(
+        outer,
+        outer*.25,
+        rotation,
+        .55
+    );
+
+    ring(
+        outer,
+        outer*.25,
+        -rotation*1.4,
+        .35
+    );
+
+    ring(
+        outer*.85,
+        outer*.42,
+        rotation*1.5,
+        .4
+    );
+
+    ring(
+        outer*.72,
+        outer*.72,
+        rotation*.7,
+        .28
+    );
+
+
+    /* =========================================
+       CONNECTING RADIAL LINES
+    ========================================= */
+
+    ctx.save();
+
+    ctx.translate(cx,cy);
+
+    ctx.rotate(rotation*.5);
+
+    for(let i=0;i<18;i++){
+
+        const a=
+            i/18*Math.PI*2;
+
+        const x1=
+            Math.cos(a)*R*.9;
+
+        const y1=
+            Math.sin(a)*R*.9;
+
+        const x2=
+            Math.cos(a)*outer;
+
+        const y2=
+            Math.sin(a)*outer;
+
+        ctx.beginPath();
+
+        ctx.moveTo(x1,y1);
+
+        ctx.lineTo(x2,y2);
+
+        ctx.strokeStyle=
+            "rgba(220,255,0,.22)";
+
+        ctx.lineWidth=.6;
+
+        ctx.stroke();
+
+    }
+
+    ctx.restore();
+
+
+    /* =========================================
+       CENTRAL SPHERE
+    ========================================= */
+
+    let sphere=
+        ctx.createRadialGradient(
+            cx-R*.3,
+            cy-R*.4,
+            R*.05,
+            cx,
+            cy,
+            R
+        );
+
+    sphere.addColorStop(
+        0,
+        "#ffffff"
+    );
+
+    sphere.addColorStop(
+        .18,
+        "#eeff75"
+    );
+
+    sphere.addColorStop(
+        .42,
+        "#d7ff00"
+    );
+
+    sphere.addColorStop(
+        .68,
+        "#7c35ff"
+    );
+
+    sphere.addColorStop(
+        1,
+        "#130022"
+    );
+
+    ctx.fillStyle=sphere;
+
+    ctx.beginPath();
+
+    ctx.arc(
+        cx,
+        cy,
+        R,
+        0,
+        Math.PI*2
+    );
+
+    ctx.fill();
+
+
+    /* =========================================
+       CORE HIGHLIGHT
+    ========================================= */
+
+    ctx.beginPath();
+
+    ctx.arc(
+        cx-R*.3,
+        cy-R*.35,
+        R*.22,
+        0,
+        Math.PI*2
+    );
+
+    ctx.fillStyle=
+        "rgba(255,255,255,.65)";
+
+    ctx.fill();
+
+
+    /* =========================================
+       RED ENERGY ARC
+    ========================================= */
+
+    ctx.save();
+
+    ctx.translate(cx,cy);
+
+    ctx.rotate(-rotation*2);
+
+    ctx.beginPath();
+
+    ctx.arc(
+        0,
+        0,
+        R*1.35,
+        -.6,
+        .8
+    );
+
+    ctx.strokeStyle=
+        "rgba(255,50,70,.9)";
+
+    ctx.lineWidth=2;
+
+    ctx.shadowBlur=15;
+
+    ctx.shadowColor=
+        "rgba(255,30,60,.8)";
+
+    ctx.stroke();
+
+    ctx.restore();
+
+
+    /* =========================================
+       SMALL INNER RINGS
+    ========================================= */
+
+    ctx.save();
+
+    ctx.translate(cx,cy);
+
+    ctx.rotate(-rotation*2);
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+        0,
+        0,
+        R*1.25,
+        R*.35,
+        0,
+        0,
+        Math.PI*2
+    );
+
+    ctx.strokeStyle=
+        "rgba(225,255,0,.7)";
+
+    ctx.lineWidth=1;
+
+    ctx.stroke();
+
+    ctx.restore();
+
+
+    /* =========================================
+       LISTENING AUDIO RIPPLE
+    ========================================= */
+
+    if(mode==="listening"){
+
+        for(let i=0;i<3;i++){
+
+            let rr=
+                R+
+                25+
+                i*22+
+                micLevel*70;
+
+            ctx.beginPath();
+
+            ctx.arc(
+                cx,
+                cy,
+                rr,
+                0,
+                Math.PI*2
+            );
+
+            ctx.strokeStyle=
+                `rgba(220,255,0,
+                ${.25-i*.06})`;
+
+            ctx.lineWidth=1;
+
+            ctx.stroke();
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   ANIMATION LOOP
+===================================================== */
+
+function animate(){
+
+    drawCore();
+
+    requestAnimationFrame(animate);
+
+}
+
+
+/* =====================================================
+   START CORE
+===================================================== */
+
+function startCore(){
+
+    animate();
+
+}
+
+
+/* =====================================================
+   MICROPHONE AUDIO
+===================================================== */
+
+let audioContext;
+let analyser;
+let microphone;
+let audioData;
+
+async function startMicrophone(){
+
+    try{
+
+        const stream=
+            await navigator.mediaDevices
+            .getUserMedia({
+                audio:true
+            });
+
+        audioContext=
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+        analyser=
+            audioContext.createAnalyser();
+
+        analyser.fftSize=256;
+
+        microphone=
+            audioContext.createMediaStreamSource(
+                stream
+            );
+
+        microphone.connect(analyser);
+
+        audioData=
+            new Uint8Array(
+                analyser.frequencyBinCount
+            );
+
+        document.getElementById("micInfo")
+        .innerText=
+            "AUDIO CORE // ONLINE";
+
+        updateMic();
+
+    }catch(error){
+
+        document.getElementById("micInfo")
+        .innerText=
+            "MICROPHONE ACCESS REQUIRED";
+
+        console.log(error);
+
+    }
+
+}
+
+
+/* =====================================================
+   READ MIC VOLUME
+===================================================== */
+
+function updateMic(){
+
+    if(analyser){
+
+        analyser.getByteFrequencyData(
+            audioData
+        );
+
+        let total=0;
+
+        for(let i=0;i<audioData.length;i++){
+
+            total+=audioData[i];
+
+        }
+
+        let average=
+            total/audioData.length;
+
+        let target=
+            average/255;
+
+        /*
+           smooth movement
+        */
+
+        micLevel=
+            micLevel*.75+
+            target*.25;
+
+    }
+
+    requestAnimationFrame(updateMic);
+
+}
+
+
+/* =====================================================
+   JARVIS STATES
+===================================================== */
+
+function setMode(newMode){
+
+    mode=newMode;
+
+    const status=
+        document.getElementById("status");
+
+    const sub=
+        document.getElementById("statusSub");
+
+
+    if(newMode==="standby"){
+
+        status.innerText=
+            "ACTIVATED";
+
+        sub.innerText=
+            'SAY "HEY JARVIS"';
+
+    }
+
+
+    if(newMode==="listening"){
+
+        status.innerText=
+            "LISTENING...";
+
+        sub.innerText=
+            "AUDIO INPUT DETECTED";
+
+    }
+
+
+    if(newMode==="thinking"){
+
+        status.innerText=
+            "THINKING...";
+
+        sub.innerText=
+            "EDITH CORE PROCESSING";
+
+    }
+
+
+    if(newMode==="speaking"){
+
+        status.innerText=
+            "SPEAKING...";
+
+        sub.innerText=
+            "J.A.R.V.I.S. RESPONSE";
+
+    }
+
+}
+
+
+/* =====================================================
+   BROWSER WAKE WORD DEMO
+===================================================== */
+
+let recognition;
+
+function startJarvisRecognition(){
+
+    const SpeechRecognition=
         window.SpeechRecognition ||
         window.webkitSpeechRecognition;
 
-    recognition =
+    if(!SpeechRecognition){
+
+        console.log(
+            "Speech recognition unavailable"
+        );
+
+        return;
+
+    }
+
+    recognition=
         new SpeechRecognition();
 
-    recognition.continuous = true;
-    recognition.interimResults = false;
-    recognition.lang = "en-US";
+    recognition.continuous=true;
+
+    recognition.interimResults=true;
+
+    recognition.lang="en-US";
 
 
-    recognition.onresult = function(event) {
+    recognition.onresult=function(event){
 
-        const text =
-            event.results[
-                event.results.length - 1
-            ][0].transcript
-            .toLowerCase()
-            .trim();
+        let transcript="";
+
+        for(
+            let i=event.resultIndex;
+            i<event.results.length;
+            i++
+        ){
+
+            transcript+=
+                event.results[i][0].transcript
+                .toLowerCase();
+
+        }
 
 
-        if (
-            text.includes("hey jarvis") ||
-            text.includes("hey jarvis")
-        ) {
+        if(
+            transcript.includes("hey jarvis") ||
+            transcript.includes("hey jarvis")
+        ){
 
-            showListening();
+            activateSequence();
 
         }
 
     };
 
-}
 
+    recognition.onerror=function(event){
 
-/* START BROWSER LISTENER */
-
-function startBrowserListener() {
-
-    if (!recognition) {
-        return;
-    }
-
-    try {
-        recognition.start();
-    }
-    catch(e) {}
-
-}
-
-
-/* LISTENING DISPLAY */
-
-function showListening() {
-
-    const status =
-        document.getElementById("status");
-
-    status.innerText =
-        "LISTENING...";
-
-    status.classList.add(
-        "listening"
-    );
-
-
-    setTimeout(() => {
-
-        status.innerText =
-            "ACTIVATED";
-
-        status.classList.remove(
-            "listening"
+        console.log(
+            "Recognition error:",
+            event.error
         );
 
-    }, 3000);
+    };
+
+
+    recognition.onend=function(){
+
+        try{
+
+            recognition.start();
+
+        }catch(e){}
+
+    };
+
+
+    try{
+
+        recognition.start();
+
+    }catch(e){}
 
 }
+
+
+/* =====================================================
+   DEMO SEQUENCE
+===================================================== */
+
+let sequenceRunning=false;
+
+function activateSequence(){
+
+    if(sequenceRunning)
+        return;
+
+    sequenceRunning=true;
+
+
+    /*
+       WAKE
+    */
+
+    setMode("listening");
+
+
+    /*
+       LISTEN FOR A FEW SECONDS
+    */
+
+    setTimeout(()=>{
+
+        setMode("thinking");
+
+    },5000);
+
+
+    /*
+       THINKING
+    */
+
+    setTimeout(()=>{
+
+        setMode("speaking");
+
+        fakeSpeaking();
+
+    },8000);
+
+
+    /*
+       RETURN TO STANDBY
+    */
+
+    setTimeout(()=>{
+
+        setMode("standby");
+
+        sequenceRunning=false;
+
+    },12500);
+
+}
+
+
+/* =====================================================
+   FAKE SPEAKING AUDIO REACTION
+   ===================================================== */
+
+function fakeSpeaking(){
+
+    let start=
+        performance.now();
+
+    function animateSpeaking(){
+
+        if(mode!=="speaking"){
+
+            speakingLevel=0;
+
+            return;
+
+        }
+
+        let t=
+            (performance.now()-start)/1000;
+
+        speakingLevel=
+            .35+
+            Math.abs(
+                Math.sin(t*7)
+            )*.5+
+            Math.random()*.15;
+
+        requestAnimationFrame(
+            animateSpeaking
+        );
+
+    }
+
+    animateSpeaking();
+
+}
+
+
+/* =====================================================
+   OPTIONAL TEST CONTROLS
+   =====================================================
+
+   Open browser console and type:
+
+   setMode("listening")
+   setMode("thinking")
+   setMode("speaking")
+   setMode("standby")
+
+===================================================== */
 
 </script>
 
