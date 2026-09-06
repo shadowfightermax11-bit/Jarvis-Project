@@ -20,7 +20,7 @@ body{
 }
 
 /* =========================================================
-   LOGIN PAGE
+   LOGIN PAGE — KEPT AS ORIGINAL
 ========================================================= */
 
 #loginPage{
@@ -125,7 +125,6 @@ button:hover{
     height:100vh;
     position:relative;
     overflow:hidden;
-
     background:
         radial-gradient(
             circle at 50% 48%,
@@ -149,7 +148,6 @@ button:hover{
     position:absolute;
     inset:0;
     opacity:.16;
-
     background-image:
         linear-gradient(
             rgba(100,70,255,.15) 1px,
@@ -160,18 +158,10 @@ button:hover{
             rgba(0,180,255,.12) 1px,
             transparent 1px
         );
-
     background-size:55px 55px;
-
-    transform:
-        perspective(500px)
-        rotateX(60deg)
-        scale(1.8);
-
+    transform:perspective(500px) rotateX(60deg) scale(1.8);
     transform-origin:center bottom;
-
     bottom:-35%;
-
     pointer-events:none;
 }
 
@@ -187,7 +177,6 @@ button:hover{
     border-radius:50%;
     background:white;
     opacity:.5;
-
     box-shadow:0 0 5px white;
 }
 
@@ -200,7 +189,6 @@ button:hover{
     position:absolute;
     top:0;
     left:0;
-
     width:100%;
     height:75px;
 
@@ -279,18 +267,16 @@ button:hover{
     position:absolute;
 
     left:50%;
-    top:49%;
+    top:52%;
 
     transform:translate(-50%,-50%);
 
     width:min(720px,90vw);
-    height:min(560px,70vh);
+    height:min(600px,75vh);
 
     display:flex;
     align-items:center;
     justify-content:center;
-
-    overflow:visible;
 }
 
 
@@ -360,7 +346,6 @@ button:hover{
     from{
         transform:translate(-50%,-50%) rotate(0deg);
     }
-
     to{
         transform:translate(-50%,-50%) rotate(360deg);
     }
@@ -370,7 +355,6 @@ button:hover{
     from{
         transform:translate(-50%,-50%) rotate(360deg);
     }
-
     to{
         transform:translate(-50%,-50%) rotate(0deg);
     }
@@ -383,7 +367,6 @@ button:hover{
 
 .marker{
     position:absolute;
-
     left:50%;
     top:50%;
 
@@ -432,7 +415,7 @@ button:hover{
 
 
 /* =========================================================
-   GIF CORE
+   VIDEO CORE
 ========================================================= */
 
 .core-video-wrap{
@@ -453,6 +436,9 @@ button:hover{
 
     z-index:5;
 }
+
+
+/* glow behind video */
 
 .core-video-wrap::before{
     content:"";
@@ -489,6 +475,9 @@ button:hover{
     }
 }
 
+
+/* actual ball video */
+
 #ballVideo{
     position:relative;
 
@@ -519,7 +508,8 @@ button:hover{
     left:50%;
     top:4%;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
     z-index:8;
 
@@ -572,9 +562,7 @@ button:hover{
 }
 
 
-/* =========================================================
-   YELLOW ACCENT
-========================================================= */
+/* yellow accent underneath */
 
 .title-line{
     position:absolute;
@@ -604,33 +592,27 @@ button:hover{
 
 
 /* =========================================================
-   CORE LABEL — FIXED
+   CORE LABEL
 ========================================================= */
 
 .core-label{
     position:absolute;
 
     left:50%;
-    top:calc(49% + 205px);
+    top:79%;
 
     transform:translateX(-50%);
 
-    width:min(90vw,500px);
-
-    z-index:12;
+    z-index:8;
 
     text-align:center;
 
     white-space:nowrap;
-
-    pointer-events:none;
 }
 
 .core-main{
     font-size:12px;
     letter-spacing:5px;
-
-    line-height:1.4;
 
     color:#d8ff00;
 
@@ -645,25 +627,23 @@ button:hover{
     font-size:8px;
     letter-spacing:4px;
 
-    line-height:1.5;
-
     color:#766f9c;
 }
 
 
 /* =========================================================
-   STATUS — FIXED
+   STATUS
 ========================================================= */
 
 .status{
     position:absolute;
 
+    bottom:72px;
     left:50%;
-    bottom:62px;
 
     transform:translateX(-50%);
 
-    z-index:15;
+    z-index:10;
 
     font-size:10px;
     letter-spacing:5px;
@@ -675,8 +655,6 @@ button:hover{
         0 0 18px rgba(0,217,255,.5);
 
     transition:.3s;
-
-    white-space:nowrap;
 }
 
 
@@ -714,14 +692,16 @@ button:hover{
     left:28px;
     top:50%;
 
-    transform:translateY(-50%);
+    transform:
+        translateY(-50%);
 }
 
 .panel-right{
     right:28px;
     top:50%;
 
-    transform:translateY(-50%);
+    transform:
+        translateY(-50%);
 }
 
 .panel-title{
@@ -773,20 +753,19 @@ button:hover{
 
 
 /* =========================================================
-   BOTTOM HUD — FIXED
+   BOTTOM HUD
 ========================================================= */
 
 .bottom{
     position:absolute;
 
-    bottom:18px;
+    bottom:20px;
     left:0;
 
     width:100%;
 
     display:flex;
     justify-content:space-between;
-    align-items:center;
 
     padding:0 30px;
 
@@ -796,20 +775,15 @@ button:hover{
     color:#4d4d61;
 
     z-index:10;
-
-    line-height:1.5;
 }
 
 .bottom-center{
     position:absolute;
 
     left:50%;
-
     transform:translateX(-50%);
 
     color:#625c82;
-
-    white-space:nowrap;
 }
 
 
@@ -841,7 +815,6 @@ button:hover{
     animation:scan 7s linear infinite;
 
     pointer-events:none;
-
     z-index:20;
 }
 
@@ -862,11 +835,8 @@ button:hover{
 
 #initLines{
     position:fixed;
-
     inset:0;
-
     pointer-events:none;
-
     z-index:50;
 }
 
@@ -934,11 +904,6 @@ button:hover{
         display:none;
     }
 
-    .core-area{
-        top:46%;
-        height:480px;
-    }
-
     .ring1{
         width:280px;
         height:280px;
@@ -974,74 +939,23 @@ button:hover{
         height:160px;
     }
 
-    .jarvis-title{
-        font-size:clamp(30px,10vw,52px);
-        letter-spacing:clamp(4px,1vw,9px);
-    }
-
     .core-label{
-        top:calc(46% + 180px);
-        width:94vw;
-    }
-
-    .core-main{
-        font-size:10px;
-        letter-spacing:3px;
-    }
-
-    .core-sub{
-        font-size:7px;
-        letter-spacing:2.5px;
-        margin-top:7px;
-    }
-
-    .status{
-        bottom:55px;
-        font-size:8px;
-        letter-spacing:3px;
+        top:82%;
     }
 
     .bottom{
         padding:0 12px;
         font-size:6px;
-        bottom:15px;
     }
 
     .bottom-center{
         display:none;
     }
 }
-
-
-/* =========================================================
-   SMALL HEIGHT SCREENS
-========================================================= */
-
-@media(max-height:700px) and (min-width:701px){
-
-    .core-area{
-        top:47%;
-        height:470px;
-    }
-
-    .core-label{
-        top:calc(47% + 175px);
-    }
-
-    .status{
-        bottom:48px;
-    }
-
-    .bottom{
-        bottom:12px;
-    }
-}
-
 </style>
 </head>
 
 <body>
-
 
 <!-- =========================================================
      LOGIN
@@ -1219,15 +1133,20 @@ button:hover{
         </div>
 
 
-        <!-- YOUR GIF -->
+        <!-- YOUR VIDEO -->
 
         <div class="core-video-wrap">
 
-            <img
+            <video
                 id="ballVideo"
-                src="ball.gif"
-                alt="EDITH Core"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="auto"
             >
+                <source src="ball.mp4" type="video/mp4">
+            </video>
 
         </div>
 
