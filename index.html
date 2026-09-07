@@ -518,7 +518,7 @@ button:hover{
 
 
 /* =========================================================
-   CORE VIDEO
+   CORE
 ========================================================= */
 
 .core-video-wrap{
@@ -586,6 +586,7 @@ button:hover{
 
 /* =========================================================
    MULTICOLOR CORE BORDER
+   ORIGINAL SLEEPING / READY STATE
 ========================================================= */
 
 .core-video-wrap::after{
@@ -648,7 +649,8 @@ button:hover{
 
 
 /* =========================================================
-   LISTENING RED CORE BORDER
+   LISTENING
+   NEON RED
 ========================================================= */
 
 .core-video-wrap.listening::after{
@@ -694,29 +696,89 @@ button:hover{
 
 
 /* =========================================================
-   VIDEO
+   THINKING
+   NEON YELLOW + PURPLE
 ========================================================= */
 
-#ballVideo{
-    position:relative;
+.core-video-wrap.thinking::after{
 
-    width:190px;
-    height:190px;
+    width:224px;
+    height:224px;
 
-    object-fit:contain;
+    border:
+        2px solid #d8ff00;
 
-    border-radius:50%;
+    background:
+        transparent;
 
-    z-index:3;
+    opacity:1;
 
-    filter:
-        drop-shadow(0 0 8px #00cfff)
-        drop-shadow(
-            0 0 22px
-            rgba(120,0,255,.8)
-        );
+    box-shadow:
+        0 0 5px #d8ff00,
+        0 0 12px #d8ff00,
+        0 0 24px #d8ff00,
+        0 0 40px #9d00ff,
+        0 0 65px #7a00ff,
+        0 0 85px rgba(157,0,255,.45);
 
-    mix-blend-mode:screen;
+    animation:
+        thinkingPulse 1.1s ease-in-out infinite;
+}
+
+@keyframes thinkingPulse{
+
+    0%,100%{
+        transform:scale(.97);
+        opacity:.8;
+    }
+
+    50%{
+        transform:scale(1.05);
+        opacity:1;
+    }
+}
+
+
+/* =========================================================
+   RESPONDING
+   NEON GREEN
+========================================================= */
+
+.core-video-wrap.responding::after{
+
+    width:224px;
+    height:224px;
+
+    border:
+        2px solid #00ff66;
+
+    background:
+        transparent;
+
+    opacity:1;
+
+    box-shadow:
+        0 0 5px #00ff66,
+        0 0 12px #00ff66,
+        0 0 25px #00ff66,
+        0 0 45px rgba(0,255,102,.9),
+        0 0 75px rgba(0,255,102,.45);
+
+    animation:
+        respondingPulse 1s ease-in-out infinite;
+}
+
+@keyframes respondingPulse{
+
+    0%,100%{
+        transform:scale(.98);
+        opacity:.8;
+    }
+
+    50%{
+        transform:scale(1.06);
+        opacity:1;
+    }
 }
 
 
@@ -1338,17 +1400,14 @@ button:hover{
         height:180px;
     }
 
-    #ballVideo{
-        width:160px;
-        height:160px;
-    }
-
     .core-video-wrap::after{
         width:170px;
         height:170px;
     }
 
-    .core-video-wrap.listening::after{
+    .core-video-wrap.listening::after,
+    .core-video-wrap.thinking::after,
+    .core-video-wrap.responding::after{
         width:176px;
         height:176px;
     }
@@ -1642,27 +1701,10 @@ button:hover{
         </div>
 
 
-        <!-- BALL -->
+        <!-- EMPTY CORE
+             ball.mp4 removed -->
 
-        <div class="core-video-wrap">
-
-            <video
-                id="ballVideo"
-                autoplay
-                loop
-                muted
-                playsinline
-                preload="auto"
-            >
-
-                <source
-                    src="ball.mp4"
-                    type="video/mp4"
-                >
-
-            </video>
-
-        </div>
+        <div class="core-video-wrap"></div>
 
     </div>
 
@@ -1778,6 +1820,12 @@ function initialize(){
         startWakeRecognition,
         1000
     );
+
+
+    /* PYTHON EDITH BRIDGE */
+
+    startPythonBridge();
+
 }
 
 
@@ -1983,30 +2031,86 @@ function setStatus(text){
 
 
 /* =========================================================
-   JARVIS VISUAL STATES
+   PYTHON BRIDGE
 ========================================================= */
 
-let sequenceRunning = false;
+let lastPythonState = "";
+
+let lastPythonMessage = "";
 
 
-function activateJarvis(){
+async function updatePythonState(){
 
-    if(sequenceRunning)
-        return;
+    try{
+
+        const response =
+            await fetch(
+                "http://127.0.0.1:8765/state?t=" +
+                Date.now(),
+                {
+                    cache:"no-store"
+                }
+            );
 
 
-    sequenceRunning = true;
+        if(!response.ok){
+
+            throw new Error(
+                "Bridge unavailable"
+            );
+        }
 
 
-    const video =
-        document.getElementById(
-            "ballVideo"
+        const data =
+            await response.json();
+
+
+        if(
+            data.state === lastPythonState &&
+            data.message === lastPythonMessage
+        ){
+
+            return;
+        }
+
+
+        lastPythonState =
+            data.state;
+
+
+        lastPythonMessage =
+            data.message;
+
+
+        applyPythonState(
+            data.state,
+            data.message
         );
 
+    }
+    catch(error){
 
-    const title =
+        console.log(
+            "EDITH bridge:",
+            error.message
+        );
+
+    }
+}
+
+
+/* =========================================================
+   APPLY PYTHON STATE
+========================================================= */
+
+function applyPythonState(
+    state,
+    message
+){
+
+    const coreWrap =
         document.querySelector(
-            ".jarvis-title"
+            ".core-video-wrap"
         );
 
 
@@ -2016,46 +2120,71 @@ function activateJarvis(){
         );
 
 
-    const coreWrap =
-        document.querySelector(
-            ".core-video-wrap"
+    const status =
+        document.getElementById(
+            "status"
         );
+
+
+    /* Remove special states */
+
+    coreWrap.classList.remove(
+        "listening",
+        "thinking",
+        "responding"
+    );
+
+
+    /* =====================================================
+       READY / SLEEPING
+       RGB BORDER RETURNS AUTOMATICALLY
+    ===================================================== */
+
+    if(state === "ready"){
+
+        core.textContent =
+            "EDITH CORE // ONLINE";
+
+
+        status.textContent =
+            'READY // SAY "HEY JARVIS"';
+
+
+        return;
+    }
 
 
     /* =====================================================
        LISTENING
     ===================================================== */
 
-    setStatus(
-        "LISTENING..."
-    );
+    if(state === "listening"){
+
+        coreWrap.classList.add(
+            "listening"
+        );
 
 
-    core.textContent =
-        "VOICE INPUT // ACTIVE";
+        core.textContent =
+            "VOICE INPUT // ACTIVE";
 
 
-    coreWrap.classList.add(
-        "listening"
-    );
+        status.textContent =
+            "LISTENING...";
 
 
-    video.style.filter =
-        "drop-shadow(0 0 12px #ff1744) drop-shadow(0 0 30px rgba(255,23,68,.9))";
-
-
-    title.style.textShadow =
-        "0 0 5px #fff, 0 0 15px #ff1744, 0 0 35px #9d00ff";
+        return;
+    }
 
 
     /* =====================================================
        THINKING
     ===================================================== */
 
-    setTimeout(()=>{
+    if(state === "thinking"){
 
-        setStatus(
-            "THINKING..."
+        coreWrap.classList.add(
+            "thinking"
         );
 
 
@@ -2063,20 +2192,22 @@ function activateJarvis(){
             "NEURAL PROCESSING // ACTIVE";
 
 
-        video.style.filter =
-            "drop-shadow(0 0 12px #9d00ff) drop-shadow(0 0 35px rgba(0,150,255,.9))";
+        status.textContent =
+            "THINKING...";
 
-    },4000);
+
+        return;
+    }
 
 
     /* =====================================================
        RESPONDING
     ===================================================== */
 
-    setTimeout(()=>{
+    if(state === "responding"){
 
-        setStatus(
-            "RESPONDING..."
+        coreWrap.classList.add(
+            "responding"
         );
 
 
@@ -2084,43 +2215,60 @@ function activateJarvis(){
             "EDITH RESPONSE // ACTIVE";
 
 
-        video.style.filter =
-            "drop-shadow(0 0 12px #00d9ff) drop-shadow(0 0 35px rgba(0,217,255,.9))";
+        status.textContent =
+            "RESPONDING...";
 
-    },7000);
+
+        return;
+    }
 
 
     /* =====================================================
-       RETURN
+       OFFLINE
     ===================================================== */
 
-    setTimeout(()=>{
-
-        setStatus(
-            'READY // SAY "HEY JARVIS"'
-        );
-
+    if(state === "offline"){
 
         core.textContent =
-            "EDITH CORE // ONLINE";
+            "EDITH CORE // OFFLINE";
 
 
-        coreWrap.classList.remove(
-            "listening"
-        );
+        status.textContent =
+            "PYTHON LINK OFFLINE";
+
+    }
+
+}
 
 
-        video.style.filter =
-            "drop-shadow(0 0 8px #00cfff) drop-shadow(0 0 22px rgba(120,0,255,.8))";
+/* =========================================================
+   START PYTHON BRIDGE
+========================================================= */
+
+function startPythonBridge(){
+
+    updatePythonState();
 
 
-        title.style.textShadow =
-            "0 0 4px #fff, 0 0 10px #fff, 0 0 20px #b000ff, 0 0 40px #6500ff, 0 0 70px #2600ff";
+    setInterval(
+        updatePythonState,
+        250
+    );
+
+}
 
 
-        sequenceRunning = false;
+/* =========================================================
+   WAKE WORD VISUAL
+========================================================= */
 
-    },11000);
+function activateJarvis(){
+
+    applyPythonState(
+        "listening",
+        "VOICE INPUT // ACTIVE"
+    );
+
 }
 
 
@@ -2461,7 +2609,7 @@ setInterval(()=>{
 
 
 /* =========================================================
-   KEYBOARD TEST
+   KEYBOARD J TEST
 ========================================================= */
 
 document.addEventListener(
